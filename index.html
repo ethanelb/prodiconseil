@@ -766,6 +766,8 @@ let all=[],cur=null;
 const PAGE=50; let currentPage=1,_totalCount=0,_reqToken=0;
 const ico=t=>({Kraft:'📦',FBB:'🗂️',SBS:'📋',Testliner:'🧱',Fluting:'〰️',Offset:'🧻',Thermique:'🏷️',Duplex:'📄',Triplex:'📑'}[t]||'📦');
 const fmt=kg=>!kg?'—':kg>=1000?(kg/1000).toFixed(1)+' t':kg+' kg';
+const QUALITE_LABELS={Kraft:'Kraft',FBB:'FBB',SBS:'SBS',Testliner:'Testliner',Fluting:'Fluting',Offset:'Offset',Thermique:'Thermique',Duplex:'Duplex',Triplex:'Triplex','Kraft Recyclé':'Kraft Recyclé','Semi-Chimique':'Semi-Chimique'};
+const qlabel=q=>QUALITE_LABELS[q]||q;
 const toast=(m,d=3000)=>{const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),d);};
 const sp=v=>document.getElementById('spinner').classList.toggle('show',v);
 
