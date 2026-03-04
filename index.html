@@ -161,7 +161,7 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .pcard{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:all .22s;position:relative;}
 .pcard:hover{border-color:rgba(254,0,0,.4);box-shadow:0 8px 32px rgba(254,0,0,.12);transform:translateY(-3px);}
 .pcard-img{height:145px;background:linear-gradient(135deg,var(--off) 0%,var(--off2) 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.pcard-img img{width:100%;height:100%;object-fit:cover;}
+.pcard-img img{width:100%;height:100%;object-fit:contain;background:var(--off);}
 /* placeholder quand pas d'image */
 .pcard-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,var(--off) 0%,var(--off2) 100%);}
 .pcard-placeholder svg{opacity:.35;}
@@ -267,7 +267,7 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .dmodal{background:var(--white);border-radius:16px;width:100%;max-width:780px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25);margin:auto;animation:up .22s cubic-bezier(.4,0,.2,1);display:grid;grid-template-columns:340px 1fr;}
 .dimg-col{position:relative;background:linear-gradient(145deg,var(--off),var(--off2));}
 .dmain{width:100%;height:100%;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.dmain img{width:100%;height:100%;object-fit:cover;}
+.dmain img{width:100%;height:100%;object-fit:contain;background:#111;}
 .dclose{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s;}
 .dclose:hover{background:rgba(0,0,0,.8);}
 .dqbadge-wrap{position:absolute;top:12px;left:12px;z-index:2;}
