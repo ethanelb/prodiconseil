@@ -175,6 +175,7 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px;}
 .tag{padding:2px 8px;background:var(--off);border:1px solid var(--border);border-radius:20px;font-size:10px;font-weight:600;color:var(--ink2);}
 .tag.tag-gsm{background:rgba(254,0,0,.07);border-color:rgba(254,0,0,.2);color:var(--red);}
+.tag.tag-qual{background:#111;border-color:#111;color:#fff;font-weight:700;letter-spacing:.4px;}
 .pcard-foot{display:flex;justify-content:space-between;align-items:center;padding-top:9px;border-top:1px solid var(--border);}
 .pton{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--ink);font-weight:700;}
 .pton-s{font-size:10px;color:var(--gray);}
@@ -1733,12 +1734,12 @@ function renderCards(list){
       ?[p.largeur?`${p.largeur}`:null,p.longueur?`${p.longueur}`:null].filter(Boolean).join(' × ')+(p.largeur||p.longueur?' mm':'')
       :p.largeur?`${p.largeur} mm`:'';
     const tags=[
+      p.qualite?`<span class="tag tag-qual">${p.qualite}</span>`:'',
       p.grammage?`<span class="tag tag-gsm">${p.grammage} g/m²</span>`:'',
       dimTag?`<span class="tag">${dimTag}</span>`:'',
       p.noyau?`<span class="tag">Ø${p.noyau} mm</span>`:'',
       p.format?`<span class="tag">${p.format}</span>`:'',
       p.couleur?`<span class="tag">${p.couleur}</span>`:'',
-      p.qualite?`<span class="tag tag-qual" style="background:var(--off2);color:var(--ink);font-weight:600">${p.qualite}</span>`:''
     ].join('');
     const poids=p.poids_net?`${(p.poids_net/1000).toFixed(2)}`:'—';
     const prixHtml=p.price
