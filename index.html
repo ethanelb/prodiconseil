@@ -166,13 +166,8 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .pcard-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,var(--off) 0%,var(--off2) 100%);}
 .pcard-placeholder svg{opacity:.35;}
 .pcard-placeholder .pcard-initials{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gray);letter-spacing:2px;opacity:.7;}
-/* quality badge */
-.pcard-qbadge{position:absolute;top:8px;left:8px;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);}
-.pcard-qbadge.qb-kraft{background:#92400e;}
-.pcard-qbadge.qb-sbs{background:#1e3a8a;}
-.pcard-qbadge.qb-fbb{background:#5b21b6;}
-.pcard-qbadge.qb-recyc{background:#166534;}
-.pcard-qbadge.qb-other{background:rgba(20,20,20,.72);}
+/* quality badge overlay on photo */
+.pcard-qbadge{position:absolute;bottom:8px;left:8px;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#fff;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);box-shadow:0 1px 4px rgba(0,0,0,.3);}
 .pcard-stripe{height:3px;background:var(--red);}
 .pcard-body{padding:13px;}
 .pcard-ref{font-size:10px;color:var(--gray2);font-weight:600;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px;}
@@ -1750,7 +1745,7 @@ function renderCards(list){
       ?`<div class="pcard-price">${p.price.toLocaleString('fr-FR')} €/T</div>`
       :`<div class="pcard-price-ask">Sur demande</div>`;
     return`<div class="pcard" onclick="openDetail(${p.id})">
-      <div class="pcard-img">${imgHtml}</div>
+      <div class="pcard-img">${imgHtml}${p.qualite?`<div class="pcard-qbadge">${p.qualite}</div>`:''}</div>
       <div class="pcard-stripe"></div>
       <div class="pcard-body">
         <div class="pcard-ref">${p.ref||'—'}</div>
