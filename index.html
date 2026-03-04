@@ -1743,7 +1743,7 @@ function renderCards(list){
       p.noyau?`<span class="tag">Ø${p.noyau} mm</span>`:'',
       p.format?`<span class="tag">${p.format}</span>`:'',
       p.couleur?`<span class="tag">${p.couleur}</span>`:'',
-      badgeTxt?`<span class="tag tag-qual" style="background:var(--off2);color:var(--ink);font-weight:600">${badgeTxt}</span>`:''
+      p.qualite?`<span class="tag tag-qual" style="background:var(--off2);color:var(--ink);font-weight:600">${p.qualite}</span>`:''
     ].join('');
     const poids=p.poids_net?`${(p.poids_net/1000).toFixed(2)}`:'—';
     const prixHtml=p.price
