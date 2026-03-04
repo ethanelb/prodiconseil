@@ -354,7 +354,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
   .header-search{display:none;}
   .live-pill{display:none;}
   #filter-bar{display:none;}
-  #results-bar{top:52px;}
+  #results-bar{top:82px;}
   .rbar-sort-lbl{display:none;}
   #mob-filter-bar{display:block;}
   body{padding-bottom:64px;}
@@ -389,7 +389,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 .pellipsis{font-size:14px;color:var(--gray2);padding:0 2px;display:flex;align-items:flex-end;height:36px;padding-bottom:6px;}
 
 /* ── FILTER BAR ── */
-#filter-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:var(--z-filterbar);padding:0 24px;}
+#filter-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:82px;z-index:var(--z-filterbar);padding:0 24px;}
 .fbar-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:8px;height:48px;overflow-x:auto;scrollbar-width:none;}
 .fbar-inner::-webkit-scrollbar{display:none;}
 .fbar-sep{width:1px;height:20px;background:var(--border);flex-shrink:0;}
@@ -414,7 +414,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 #active-chips:empty{display:none;padding:0;}
 
 /* ── RESULTS BAR ── */
-#results-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:100px;z-index:var(--z-resultsbar);}
+#results-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:130px;z-index:var(--z-resultsbar);}
 .rbar-inner{max-width:1320px;margin:0 auto;padding:0 24px;height:40px;display:flex;align-items:center;gap:12px;}
 .rbar-count{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.5px;color:var(--ink);flex:1;}
 .rbar-count span{color:var(--red);}
@@ -518,7 +518,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 /* ── HIDE OLD UI ELEMENTS ── */
 .filters-panel{display:none !important;}
 .stats-bar{display:none !important;}
-.trust-bar{display:none !important;}
+/* trust-bar visible */
 .prod-head{display:none !important;}
 .filter-chips{display:none !important;}
 
@@ -559,6 +559,16 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
     </div>
   </div>
 </header>
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span class="trust-item">Stock Europe</span>
+    <span class="trust-item">Mise à jour quotidienne</span>
+    <span class="trust-item">Livraison 24–48h</span>
+    <span class="trust-item">Documents sur demande (EUR1, COO…)</span>
+    <span class="trust-item">Recyclé &amp; Fabrication</span>
+  </div>
+</div>
 
 <!-- ── FILTER BAR ── -->
 <div id="filter-bar">
@@ -653,16 +663,6 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
   </div>
 </div>
 
-<div class="trust-bar">
-  <div class="trust-inner">
-    <span class="trust-item">Stock Europe</span>
-    <span class="trust-item">Mise à jour quotidienne</span>
-    <span class="trust-item">Livraison 24–48h</span>
-    <span class="trust-item">Documents sur demande (EUR1, COO…)</span>
-    <span class="trust-item">Recyclé &amp; Fabrication</span>
-  </div>
-</div>
-
 <div class="mob-search-bar">
   <div class="header-search">
     <input type="text" id="search-input-mob" placeholder="Rechercher un produit..." oninput="document.getElementById('search-input').value=this.value;filterProducts()">
@@ -741,7 +741,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
       <div class="fg"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
         <div class="msd" id="msd-mandrin-sidebar">
-          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
+          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Mandrins</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
             <div class="msd-option" data-val="70" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>70 mm</div>
             <div class="msd-option" data-val="76" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>76 mm</div>
@@ -752,7 +752,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
       <div class="fg"><label class="fl">Couleur<span class="fl-count" id="fl-count-couleur" style="display:none">0</span></label>
         <div class="msd" id="msd-couleur-sidebar">
-          <button class="msd-btn" onclick="toggleMsd('msd-couleur-sidebar')"><span class="msd-btn-label">Toutes</span><span class="msd-arrow">▾</span></button>
+          <button class="msd-btn" onclick="toggleMsd('msd-couleur-sidebar')"><span class="msd-btn-label">Couleurs</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
             <div class="msd-option" data-val="Blanc" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Blanc</div>
             <div class="msd-option" data-val="Brun" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Brun</div>
@@ -1029,7 +1029,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       <div class="fd-section-body" style="margin-top:6px;">
         <div class="msd">
           <button class="msd-btn" onclick="toggleMsd('msd-mandrin-mob')">
-            <span class="msd-btn-label" id="fd-msd-mandrin-label">Tous</span>
+            <span class="msd-btn-label" id="fd-msd-mandrin-label">Mandrins</span>
             <span class="msd-arrow">▾</span>
           </button>
           <div class="msd-panel" id="msd-mandrin-mob"></div>
@@ -1044,7 +1044,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       <div class="fd-section-body" style="margin-top:6px;">
         <div class="msd">
           <button class="msd-btn" onclick="toggleMsd('msd-couleur-mob')">
-            <span class="msd-btn-label" id="fd-msd-couleur-label">Toutes</span>
+            <span class="msd-btn-label" id="fd-msd-couleur-label">Couleurs</span>
             <span class="msd-arrow">▾</span>
           </button>
           <div class="msd-panel" id="msd-couleur-mob"></div>
@@ -1170,16 +1170,16 @@ async function init(){
 
   buildMsdOptions('msd-couleur',
     ['Blanc','Brun','Ivoire','Gris','Noir','Vert','Rouge','Bleu','Jaune','Orange','Argent','Couleur','Divers'],
-    'Toutes');
+    'Couleurs');
 
-  buildMsdOptions('msd-mandrin',['70','76','150','152'],'Tous',v=>v+' mm');
+  buildMsdOptions('msd-mandrin',['70','76','150','152'],'Mandrins',v=>v+' mm');
 
   // Also build mobile msd panels (msd-type-mob, msd-mandrin-mob, msd-couleur-mob)
   buildMsdOptions('msd-type-mob',typeVals,'Tous',qlabel);
   buildMsdOptions('msd-couleur-mob',
     ['Blanc','Brun','Ivoire','Gris','Noir','Vert','Rouge','Bleu','Jaune','Orange','Argent','Couleur','Divers'],
-    'Toutes');
-  buildMsdOptions('msd-mandrin-mob',['70','76','150','152'],'Tous',v=>v+' mm');
+    'Couleurs');
+  buildMsdOptions('msd-mandrin-mob',['70','76','150','152'],'Mandrins',v=>v+' mm');
 
   // Set default view based on screen width
   if(window.innerWidth>=768){
@@ -1213,9 +1213,9 @@ const msdState = {
   'msd-couleur': new Set(),
 };
 const msdLabels = {
-  'msd-type': 'Tous',
-  'msd-mandrin': 'Tous',
-  'msd-couleur': 'Toutes',
+  'msd-type': 'Type',
+  'msd-mandrin': 'Mandrins',
+  'msd-couleur': 'Couleurs',
 };
 
 function toggleMsd(id) {
@@ -1356,26 +1356,32 @@ async function _fetchAndRender(token){
   const lmax=+document.getElementById('f-lmax').value||0;
   const mandrins=getMsdValues('msd-mandrin');
   const couleurs=getMsdValues('msd-couleur');
-  const formats=new Set([...document.querySelectorAll('.fpill.active')].map(b=>b.dataset.format));
+  const formats=new Set([...document.querySelectorAll('.fpill.active:not(.fpill-orig)')].map(b=>b.dataset.format));
   const origines=new Set([...document.querySelectorAll('.fpill-orig.active')].map(b=>b.dataset.origine));
   const sortEl=document.getElementById('sort-sel')||document.getElementById('sort-select');
   const s=sortEl?sortEl.value:'date_desc';
 
   let query=sb.from('products').select('*',{count:'exact'});
-
-  if(q){const safe=q.replace(/[%_]/g,'\\$&');query=query.or(`quality.ilike.%${safe}%,color.ilike.%${safe}%,details.ilike.%${safe}%,ref.ilike.%${safe}%`);}
-  if(types.size>0)query=query.in('quality',[...types]);
-  if(gn)query=query.gte('gsm',gn);
-  if(gx)query=query.lte('gsm',gx);
-  if(lmin)query=query.gte('width',lmin);
-  if(lmax)query=query.lte('width',lmax);
-  if(la&&!lmin&&!lmax)query=query.eq('width',la);
-  if(mandrins.size>0)query=query.in('noyau',[...mandrins]);
-  if(couleurs.size>0)query=query.or([...couleurs].map(c=>`color.ilike.%${c}%`).join(','));
-  if(formats.size>0)query=query.in('format',[...formats]);
-  if(origines.size===1)query=query.like('quality',[...origines][0]+'%');
-  if(pn)query=query.gte('price',pn);
-  if(px)query=query.lte('price',px);
+  let tonsQuery=sb.from('products').select('weight.sum()');
+  function _applyFilters(q2){
+    const safe2=q?q.replace(/[%_]/g,'\\$&'):null;
+    if(safe2)q2=q2.or(`quality.ilike.%${safe2}%,color.ilike.%${safe2}%,details.ilike.%${safe2}%,ref.ilike.%${safe2}%`);
+    if(types.size>0)q2=q2.in('quality',[...types]);
+    if(gn)q2=q2.gte('gsm',gn);
+    if(gx)q2=q2.lte('gsm',gx);
+    if(lmin)q2=q2.gte('width',lmin);
+    if(lmax)q2=q2.lte('width',lmax);
+    if(la&&!lmin&&!lmax)q2=q2.eq('width',la);
+    if(mandrins.size>0)q2=q2.in('noyau',[...mandrins]);
+    if(couleurs.size>0)q2=q2.or([...couleurs].map(c=>`color.ilike.%${c}%`).join(','));
+    if(formats.size>0)q2=q2.in('format',[...formats]);
+    if(origines.size===1)q2=q2.like('quality',[...origines][0]+'%');
+    if(pn)q2=q2.gte('price',pn);
+    if(px)q2=q2.lte('price',px);
+    return q2;
+  }
+  query=_applyFilters(query);
+  tonsQuery=_applyFilters(tonsQuery);
 
   if(s==='gsm_asc'||s==='grammage_asc')query=query.order('gsm',{ascending:true,nullsFirst:false});
   else if(s==='gsm_desc'||s==='grammage_desc')query=query.order('gsm',{ascending:false,nullsFirst:false});
@@ -1388,10 +1394,12 @@ async function _fetchAndRender(token){
 
   const ctrl=new AbortController();
   const _to=setTimeout(()=>ctrl.abort(),15000);
-  let data,error,_exactCount=null;
+  let data,error,_exactCount=null,_totalWeightKg=0;
   try{
     if(typeof query.abortSignal==='function')query=query.abortSignal(ctrl.signal);
-    ({data,error,count:_exactCount}=await query);
+    const [mainRes,tonsRes]=await Promise.all([query,tonsQuery]);
+    ({data,error,count:_exactCount}=mainRes);
+    _totalWeightKg=tonsRes.data?.[0]?.sum||0;
   }catch(e){
     clearTimeout(_to);
     if(_reqToken!==token)return;
@@ -1419,7 +1427,7 @@ async function _fetchAndRender(token){
   const rbarRefs=document.getElementById('rbar-refs');
   const rbarTons=document.getElementById('rbar-tons');
   if(rbarRefs)rbarRefs.textContent=_totalCount.toLocaleString('fr-FR');
-  if(rbarTons){const totalTons=(all.reduce((s,p)=>s+(p.poids_net||0),0)/1000);rbarTons.textContent=totalTons.toFixed(1);}
+  if(rbarTons)rbarTons.textContent=(_totalWeightKg/1000).toFixed(1);
   // Update fd-count for mobile drawer
   const fdCount=document.getElementById('fd-count');
   if(fdCount)fdCount.textContent=_totalCount.toLocaleString('fr-FR');
@@ -1485,7 +1493,7 @@ function updateFilterChips(){
   const lmax2=document.getElementById('f-lmax')?.value||'';
   if(q)chips.push({label:'Recherche : "'+q+'"',clear:()=>{document.getElementById('search-input').value='';document.getElementById('search-input-mob').value='';filterProducts();}});
   // Add format pills chip
-  const _activeFmts=Array.from(document.querySelectorAll('.fpill.active')).map(b=>b.dataset.format);
+  const _activeFmts=Array.from(document.querySelectorAll('.fpill.active:not(.fpill-orig)')).map(b=>b.dataset.format);
   const _activeOrigs=Array.from(document.querySelectorAll('.fpill-orig.active')).map(b=>b.dataset.origine==='R'?'Recyclé':'Fabrication');
   if(_activeOrigs.length>0)chips.push({label:'Origine : '+_activeOrigs.join(', '),clear:()=>{document.querySelectorAll('.fpill-orig.active').forEach(b=>b.classList.remove('active'));filterProducts();}});
   if(_activeFmts.length>0)chips.push({label:'Format : '+_activeFmts.join(', '),clear:()=>{document.querySelectorAll('.fpill.active').forEach(b=>b.classList.remove('active'));filterProducts();}});
@@ -1546,18 +1554,33 @@ function setView(mode){
   if(all.length)render(all);
 }
 
+// Decode quality codes like RKRA, SSBS, SPAC → {cls, txt}
+function decodeQuality(raw){
+  if(!raw)return{cls:'qb-other',txt:'?'};
+  const isR=raw.charAt(0)==='R';
+  const suf=raw.slice(1).toUpperCase();
+  const labels={'KRA':'Kraft','KRABRUN':'Kraft Brun','KRG':'Kraft Gris','KRR':'Kraft Rec.',
+    'SBS':'SBS','LWC':'LWC','OFF':'Offset','1SC':'1C','2SC':'2C',
+    'BON':'Premium','LINER':'Liner','ADH':'Adhésif','THERM':'Therm.',
+    'ENV':'Env.','TIS':'Tissue','LUX':'Luxe','PAC':'Packaging',
+    'BOU':'Boucher.','DIV':'Divers','AFF':'Affiche','CAR':'Carton',
+    'COL':'Collé','CUI':'Couché','FLEX':'Flex','KDO':'Kraft Dbl',
+    'NEW':'Nouveauté','PLA':'Plastique','SIL':'Siliconé','BOA':'Bobine',
+    'SPE':'Spécial','INK':'Inkjet','CUT':'Coupé','SC':'SC'};
+  const txt=labels[suf]||(suf.length>0?suf:raw);
+  let cls;
+  if(suf.startsWith('KRA'))cls='qb-kraft';
+  else if(suf==='SBS')cls='qb-sbs';
+  else if(suf==='LWC'||suf==='LUX'||suf==='OFF')cls='qb-fbb';
+  else if(isR)cls='qb-recyc';
+  else cls='qb-other';
+  return{cls,txt};
+}
+
 function renderRows(list){
   const g=document.getElementById('pgrid');
   if(!g)return;
-  function qbadgeClass(type){
-    if(!type)return 'qb-other';
-    const t=type.toLowerCase();
-    if(t.includes('kraft'))return 'qb-kraft';
-    if(t.includes('sbs'))return 'qb-sbs';
-    if(t.includes('fbb')||t.includes('duplex')||t.includes('triplex'))return 'qb-fbb';
-    if(t.includes('recycl')||t.includes('testliner')||t.includes('fluting'))return 'qb-recyc';
-    return 'qb-other';
-  }
+  function qbadgeClass(type){return decodeQuality(type).cls;}
   const rows=list.map(p=>{
     const bclass=qbadgeClass(p.type);
     const prixHtml=p.price
@@ -1568,16 +1591,15 @@ function renderRows(list){
     const larg=p.largeur?`${p.largeur}`:'—';
     const mand=p.noyau?`Ø${p.noyau}`:'—';
     const fmt2=p.format||'—';
-    const zone=p.zone?p.zone.substring(0,6):'—';
+    const {txt:btext}=decodeQuality(p.type);
     return`<tr class="prow" onclick="openDetail(${p.id})">
-      <td><span class="prow-badge ${bclass}">${p.type||'?'}</span></td>
+      <td><span class="prow-badge ${bclass}">${btext}</span></td>
       <td><span class="prow-ref">${p.ref||'—'}</span></td>
       <td><div class="prow-name">${p.name||p.type||'—'}</div>${p.couleur?`<div class="prow-sub">${p.couleur}</div>`:''}</td>
       <td class="prow-num">${gsm}</td>
       <td class="prow-num">${larg}</td>
       <td class="prow-num">${mand}</td>
       <td><span class="prow-zone">${fmt2}</span></td>
-      <td><span class="prow-zone">${zone}</span></td>
       <td class="prow-num">${poids}</td>
       <td>${prixHtml}</td>
       <td><button class="prow-add" id="radd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})" title="Ajouter">+</button></td>
@@ -1593,7 +1615,6 @@ function renderRows(list){
         <th class="col-larg">Larg.</th>
         <th class="col-mand">Mandrin</th>
         <th class="col-fmt">Format</th>
-        <th class="col-zone">Zone</th>
         <th class="col-poids">Poids</th>
         <th class="col-prix">Prix</th>
         <th class="col-cta"></th>
@@ -1612,9 +1633,7 @@ function renderCards(list){
     const imgHtml=p.image_url
       ?`<img src="${p.image_url}" alt="${p.name||''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'pcard-placeholder\\'><svg width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%23ccc\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><polyline points=\\'21,15 16,10 5,21\\'/></svg><span class=\\'pcard-initials\\'>${initials}</span></div>'">`
       :`<div class="pcard-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span class="pcard-initials">${initials}</span></div>`;
-    const t=(p.type||'').toLowerCase();
-    const badgeCls=t.includes('kraft')?'qb-kraft':t.includes('sbs')?'qb-sbs':t.includes('fbb')||t.includes('duplex')||t.includes('triplex')?'qb-fbb':t.includes('recycl')||t.includes('testliner')||t.includes('fluting')?'qb-recyc':'qb-other';
-    const badgeTxt=p.type||'—';
+    const {cls:badgeCls,txt:badgeTxt}=decodeQuality(p.type);
     const isPalette=p.format&&p.format.toLowerCase().includes('palette');
     const dimTag=isPalette
       ?[p.largeur?`${p.largeur}`:null,p.longueur?`${p.longueur}`:null].filter(Boolean).join(' × ')+(p.largeur||p.longueur?' mm':'')
