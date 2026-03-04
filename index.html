@@ -1648,6 +1648,8 @@ function renderCards(list){
       ?`<img src="${p.image_url}" alt="${p.name||''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'pcard-placeholder\\'><svg width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%23ccc\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><polyline points=\\'21,15 16,10 5,21\\'/></svg><span class=\\'pcard-initials\\'>${initials}</span></div>'">`
       :`<div class="pcard-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span class="pcard-initials">${initials}</span></div>`;
     const {cls:badgeCls,txt:badgeTxt}=decodeQuality(p.type);
+    const originTxt=(p.type||'').charAt(0)==='R'?'Recyclé':'Fabrication';
+    const originCls=(p.type||'').charAt(0)==='R'?'qb-recyc':'qb-other';
     const isPalette=p.format&&p.format.toLowerCase().includes('palette');
     const dimTag=isPalette
       ?[p.largeur?`${p.largeur}`:null,p.longueur?`${p.longueur}`:null].filter(Boolean).join(' × ')+(p.largeur||p.longueur?' mm':'')
@@ -1665,7 +1667,7 @@ function renderCards(list){
       ?`<div class="pcard-price">${p.price.toLocaleString('fr-FR')} €/T</div>`
       :`<div class="pcard-price-ask">Sur demande</div>`;
     return`<div class="pcard" onclick="openDetail(${p.id})">
-      <div class="pcard-img">${imgHtml}<div class="pcard-qbadge ${badgeCls}">${badgeTxt}</div></div>
+      <div class="pcard-img">${imgHtml}<div class="pcard-qbadge ${originCls}">${originTxt}</div></div>
       <div class="pcard-stripe"></div>
       <div class="pcard-body">
         <div class="pcard-ref">${p.ref||'—'}</div>
