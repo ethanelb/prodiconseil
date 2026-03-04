@@ -516,11 +516,56 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 .skel-block{border-radius:4px;background:linear-gradient(90deg,#E0E0E0 25%,#EFEFEF 50%,#E0E0E0 75%);background-size:400% 100%;animation:shimmer 1.4s infinite;}
 
 /* ── HIDE OLD UI ELEMENTS ── */
-.filters-panel{display:none !important;}
 .stats-bar{display:none !important;}
-/* trust-bar visible */
-.prod-head{display:none !important;}
 .filter-chips{display:none !important;}
+.prod-head{display:none !important;}
+.mob-filter-btn{display:none !important;}
+
+/* ── DESKTOP: sidebar layout ── */
+@media(min-width:769px){
+  /* Hide horizontal filter bar */
+  #filter-bar{display:none !important;}
+  /* 2-col layout: sidebar + content */
+  .body-wrap{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:0;
+    max-width:1400px;
+    padding:0 24px 32px;
+    align-items:start;
+  }
+  /* Sidebar */
+  .filters-panel{
+    display:block !important;
+    position:sticky;
+    top:122px; /* 82px header + 40px results-bar */
+    height:calc(100vh - 122px);
+    overflow-y:auto;
+    border-right:1px solid var(--border);
+    padding:20px 20px 40px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--border) transparent;
+    background:var(--white);
+  }
+  .filters-panel::-webkit-scrollbar{width:4px;}
+  .filters-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+  /* Content column */
+  .body-wrap>div:last-child{
+    padding:16px 0 0 24px;
+    min-width:0;
+  }
+  /* Results bar under header only (no more filter-bar) */
+  #results-bar{top:82px;}
+  /* Table header sticky */
+  .ptable-head{top:162px;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .filters-panel{display:none !important;}
+  #mob-filter-bar{display:block !important;}
+  #results-bar{top:82px;}
+}
 
 </style>
 </head>
@@ -736,8 +781,8 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
       <div class="fg"><label class="fl">Grammage <span style="font-weight:400;font-size:11px;color:var(--gray)">(g/m²)</span></label>
         <div class="frow">
-          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
-          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-gmin-sb" placeholder="Min" oninput="syncSbFilter('f-gmin',this.value)"><span class="fi-unit">g/m²</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-gmax-sb" placeholder="Max" oninput="syncSbFilter('f-gmax',this.value)"><span class="fi-unit">g/m²</span></div>
         </div>
       </div>
       <div class="fg" id="sb-sec-laize"><label class="fl" id="sb-laize-lbl">Laize <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
@@ -746,10 +791,10 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       <div class="fg" id="sb-sec-longueur"><label class="fl">Longueur <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
         <div class="fi-unit-wrap"><input type="number" class="fi" id="f-longueur" placeholder="ex: 700" oninput="filterProducts()" style="width:100%"><span class="fi-unit">mm</span></div>
       </div>
-      <div class="fg"><label class="fl">Prix (€/T)</label>
+      <div class="fg"><label class="fl">Prix <span style="font-weight:400;font-size:11px;color:var(--gray)">(€/T)</span></label>
         <div class="frow">
-          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
-          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmin-sb" placeholder="Min" oninput="syncSbFilter('f-pmin',this.value)"><span class="fi-unit">€/T</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmax-sb" placeholder="Max" oninput="syncSbFilter('f-pmax',this.value)"><span class="fi-unit">€/T</span></div>
         </div>
       </div>
       <div class="fg" id="sb-sec-mandrin"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
@@ -1320,6 +1365,7 @@ function toggleOriginePill(btn){
 }
 function toggleFormatPill(btn){
   btn.classList.toggle('active');
+  updateFilterVisibility();
   filterProducts();
 }
 function getMsdValues(id) { return msdState[id]; }
@@ -1402,6 +1448,7 @@ async function _fetchAndRender(token){
   const lmax=+document.getElementById('f-lmax').value||0;
   const longmin=+document.getElementById('f-longmin')?.value||0;
   const longmax=+document.getElementById('f-longmax')?.value||0;
+  const longexact=+document.getElementById('f-longueur')?.value||0;
   const mandrins=getMsdValues('msd-mandrin');
   const couleurs=getMsdValues('msd-couleur');
   const formats=new Set([...document.querySelectorAll('.fpill.active:not(.fpill-orig)')].map(b=>b.dataset.format));
@@ -1440,6 +1487,7 @@ async function _fetchAndRender(token){
     if(origines.size===1)q2=q2.like('quality',[...origines][0]+'%');
     if(longmin)q2=q2.gte('longueur',longmin);
     if(longmax)q2=q2.lte('longueur',longmax);
+    if(longexact&&!longmin&&!longmax)q2=q2.eq('longueur',longexact);
     if(pn)q2=q2.gte('price',pn);
     if(px)q2=q2.lte('price',px);
     return q2;
@@ -1894,7 +1942,8 @@ function resetFilters(){
   document.querySelectorAll('.fpill-orig.active').forEach(b=>b.classList.remove('active'));
   ['fb-bobine','fb-palette','fb-recyc','fb-fab'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
   ['f-pmin','f-pmax','f-lmin','f-lmax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  ['f-gmin','f-gmax','f-largeur','f-longmin','f-longmax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-gmin','f-gmax','f-largeur','f-longmin','f-longmax','f-longueur'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-gmin-sb','f-gmax-sb','f-pmin-sb','f-pmax-sb'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   ['search-input','search-input-mob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   // Reset mobile drawer inputs too
   ['f-gmin-mob','f-gmax-mob','f-lmin-mob','f-lmax-mob','f-pmin-mob','f-pmax-mob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
@@ -2062,9 +2111,20 @@ function scheduleFilter(){
   filterProducts();
 }
 
+// Sync sidebar input → hidden filter-bar input (which _fetchAndRender reads)
+function syncSbFilter(targetId, val){
+  const t=document.getElementById(targetId);
+  if(t)t.value=val;
+  filterProducts();
+}
+
 function updateFilterVisibility(){
-  const bobine=document.getElementById('fb-bobine')?.classList.contains('active');
-  const palette=document.getElementById('fb-palette')?.classList.contains('active');
+  const bobine=
+    document.getElementById('fb-bobine')?.classList.contains('active')||
+    !!document.querySelector('.fpill[data-format="Bobine"].active');
+  const palette=
+    document.getElementById('fb-palette')?.classList.contains('active')||
+    !!document.querySelector('.fpill[data-format="Palette"].active');
   // Only Bobine → hide Longueur, show Mandrin
   // Only Palette → hide Mandrin, show Longueur; rename Laize → Largeur
   // Both or neither → show all
