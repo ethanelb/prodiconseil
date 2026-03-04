@@ -87,7 +87,7 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .fpill.active{background:var(--red);border-color:var(--red);color:#fff;}
 .fpill-ico{font-size:16px;}
 /* Bandeau réassurance */
-.trust-bar{background:#111;border-bottom:1px solid #222;padding:7px 0;overflow:hidden;position:sticky;top:52px;z-index:99;}
+.trust-bar{background:#111;border-bottom:1px solid #222;padding:7px 0;overflow:hidden;}
 .trust-inner{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center;}
 .trust-item{font-family:'DM Sans',sans-serif;font-size:11px;color:#aaa;font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:5px;}
 .trust-item::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;}
@@ -558,17 +558,16 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       <a href="admin.html" class="btn-head-admin" style="text-decoration:none"><button class="btn-head" title="Accès admin" style="padding:8px 10px">🔐</button></a>
     </div>
   </div>
-</header>
-
-<div class="trust-bar">
-  <div class="trust-inner">
-    <span class="trust-item">Stock Europe</span>
-    <span class="trust-item">Mise à jour quotidienne</span>
-    <span class="trust-item">Livraison 24–48h</span>
-    <span class="trust-item">Documents sur demande (EUR1, COO…)</span>
-    <span class="trust-item">Recyclé &amp; Fabrication</span>
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <span class="trust-item">Stock Europe</span>
+      <span class="trust-item">Mise à jour quotidienne</span>
+      <span class="trust-item">Livraison 24–48h</span>
+      <span class="trust-item">Documents sur demande (EUR1, COO…)</span>
+      <span class="trust-item">Recyclé &amp; Fabrication</span>
+    </div>
   </div>
-</div>
+</header>
 
 <!-- ── FILTER BAR ── -->
 <div id="filter-bar">
@@ -1362,7 +1361,6 @@ async function _fetchAndRender(token){
   const s=sortEl?sortEl.value:'date_desc';
 
   let query=sb.from('products').select('*',{count:'exact'});
-  let tonsQuery=sb.from('products').select('weight.sum()');
   function _applyFilters(q2){
     const safe2=q?q.replace(/[%_]/g,'\\$&'):null;
     if(safe2)q2=q2.or(`quality.ilike.%${safe2}%,color.ilike.%${safe2}%,details.ilike.%${safe2}%,ref.ilike.%${safe2}%`);
@@ -1381,7 +1379,6 @@ async function _fetchAndRender(token){
     return q2;
   }
   query=_applyFilters(query);
-  tonsQuery=_applyFilters(tonsQuery);
 
   if(s==='gsm_asc'||s==='grammage_asc')query=query.order('gsm',{ascending:true,nullsFirst:false});
   else if(s==='gsm_desc'||s==='grammage_desc')query=query.order('gsm',{ascending:false,nullsFirst:false});
@@ -1394,12 +1391,10 @@ async function _fetchAndRender(token){
 
   const ctrl=new AbortController();
   const _to=setTimeout(()=>ctrl.abort(),15000);
-  let data,error,_exactCount=null,_totalWeightKg=0;
+  let data,error,_exactCount=null;
   try{
     if(typeof query.abortSignal==='function')query=query.abortSignal(ctrl.signal);
-    const [mainRes,tonsRes]=await Promise.all([query,tonsQuery]);
-    ({data,error,count:_exactCount}=mainRes);
-    _totalWeightKg=tonsRes.data?.[0]?.sum||0;
+    ({data,error,count:_exactCount}=await query);
   }catch(e){
     clearTimeout(_to);
     if(_reqToken!==token)return;
@@ -1427,7 +1422,7 @@ async function _fetchAndRender(token){
   const rbarRefs=document.getElementById('rbar-refs');
   const rbarTons=document.getElementById('rbar-tons');
   if(rbarRefs)rbarRefs.textContent=_totalCount.toLocaleString('fr-FR');
-  if(rbarTons)rbarTons.textContent=(_totalWeightKg/1000).toFixed(1);
+  if(rbarTons){const pageTons=all.reduce((s,p)=>s+(p.poids_net||0),0)/1000;rbarTons.textContent=pageTons.toFixed(1);}
   // Update fd-count for mobile drawer
   const fdCount=document.getElementById('fd-count');
   if(fdCount)fdCount.textContent=_totalCount.toLocaleString('fr-FR');
