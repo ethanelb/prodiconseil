@@ -620,10 +620,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
     <!-- Format -->
     <button class="fb-pill" id="fb-bobine" onclick="toggleFbPill('fb-bobine','bobine')">🧻 Bobine</button>
     <button class="fb-pill" id="fb-palette" onclick="toggleFbPill('fb-palette','palette')">📦 Palette</button>
-    <div class="fbar-sep"></div>
-    <!-- Origine -->
-    <button class="fb-pill" id="fb-recyc" onclick="toggleFbPill('fb-recyc','recyc')">♻️ Recyclé</button>
-    <button class="fb-pill" id="fb-fab" onclick="toggleFbPill('fb-fab','fab')">🏭 Fabrication</button>
+
     <div class="fbar-sep"></div>
     <!-- Type -->
     <div class="fb-msd" id="msd-type" style="position:relative;flex-shrink:0;">
@@ -752,13 +749,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
           <button class="fpill" data-format="Palette" onclick="toggleFormatPill(this)">Palette</button>
         </div>
       </div>
-      <div class="fg" style="padding-bottom:14px;margin-bottom:14px;">
-        <label class="fl">Origine</label>
-        <div class="format-pills">
-          <button class="fpill fpill-orig" data-origine="R" onclick="toggleOriginePill(this)">Recyclé</button>
-          <button class="fpill fpill-orig" data-origine="S" onclick="toggleOriginePill(this)">Fabrication</button>
-        </div>
-      </div>
+
       <div class="fg"><label class="fl">Type<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
         <div class="msd" id="msd-type-sidebar">
           <button class="msd-btn" onclick="toggleMsd('msd-type-sidebar')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
@@ -1027,18 +1018,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         </div>
       </div>
     </div>
-    <!-- Origine -->
-    <div class="fd-section open">
-      <div class="fd-section-head" onclick="toggleFdSection(this)">
-        <span class="fd-section-title">Origine</span><span class="fd-section-arrow">▾</span>
-      </div>
-      <div class="fd-section-body">
-        <div class="format-pills">
-          <button class="fpill fpill-orig" id="pill-recyc" data-origine="R" onclick="toggleOriginePill(this)"><span class="fpill-ico">♻️</span>Recyclé</button>
-          <button class="fpill fpill-orig" id="pill-fab" data-origine="S" onclick="toggleOriginePill(this)"><span class="fpill-ico">🏭</span>Fabrication</button>
-        </div>
-      </div>
-    </div>
+
     <!-- Type -->
     <div class="fd-section open">
       <div class="fd-section-head" onclick="toggleFdSection(this)">
