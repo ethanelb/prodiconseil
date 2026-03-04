@@ -14,13 +14,19 @@
   --white:#FFF;
   --shadow:0 1px 8px rgba(0,0,0,.06);--shadow-md:0 4px 20px rgba(0,0,0,.09);--shadow-lg:0 16px 48px rgba(0,0,0,.14);
   --r:6px;--rl:10px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;
+  --text-xs:11px;--text-sm:12px;--text-base:14px;--text-lg:16px;--text-xl:18px;
+  --success:#16a34a;--success-light:#f0fdf4;
+  --warning:#d97706;--warning-light:#fffbeb;
+  --header-h:52px;--filterbar-h:48px;--resultsbar-h:40px;--row-h:48px;
+  --z-header:100;--z-filterbar:99;--z-resultsbar:98;--z-dropdown:200;--z-drawer:300;--z-modal:400;--z-toast:500;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;}
 
 /* ── HEADER ── */
 header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
-.header-inner{max-width:1320px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:14px;}
+.header-inner{max-width:1320px;margin:0 auto;padding:0 24px;height:52px;display:flex;align-items:center;gap:14px;}
 .logo-link{display:flex;align-items:center;flex-shrink:0;cursor:pointer;}
 .logo-img{height:34px;width:auto;display:block;}
 .header-search{flex:1;max-width:480px;margin:0 8px;display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:40px;overflow:hidden;transition:border-color .18s;}
@@ -68,7 +74,7 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .chips-clear:hover{border-color:var(--red);color:var(--red);background:var(--red-light);}
 
 /* ── LAYOUT ── */
-.body-wrap{max-width:1320px;margin:0 auto;padding:24px;display:grid;grid-template-columns:210px 1fr;gap:24px;}
+.body-wrap{max-width:1320px;margin:0 auto;padding:16px 24px;}
 
 /* ── FILTERS ── */
 .filters-panel{position:sticky;top:76px;height:fit-content;}
@@ -341,78 +347,32 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
   .header-search{max-width:340px;}
   .live-pill{display:none;}
 }
-@media(max-width:900px){
-  .header-search{display:none;}
-}
 @media(max-width:768px){
-  /* Header compact */
   .header-inner{padding:0 12px;height:52px;gap:8px;}
-  .logo-img{height:26px;}
-  .hright{gap:6px;}
-  .btn-head-admin{display:none;}
-  /* Panier: icône + badge seulement, texte caché */
-  .btn-head-panier .btn-panier-txt{display:none;}
-  /* Contacter: icône seulement sur 768px */
-  .btn-head-contact .btn-contact-txt{display:none;}
-  .btn-head{padding:8px 10px;}
-
-  /* Search bar mobile */
-  .mob-search-bar{display:block;}
-
-  /* Stats bar: compact + scroll */
-  .stats-bar .stats-inner{overflow-x:auto;padding:0 10px;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .stats-bar .stats-inner::-webkit-scrollbar{display:none;}
-  .stat{padding:7px 11px;min-width:80px;flex-shrink:0;}
-  .stat-ico{font-size:13px;}
-  .stat-val{font-size:14px;}
-  .stat-lbl{font-size:9px;}
-
-  /* Layout */
-  .body-wrap{grid-template-columns:1fr;padding:12px;gap:0;}
-  
-  /* Filters panel */
-  .filters-panel{position:static;display:none;margin-bottom:12px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:14px;}
-  .filters-panel.open{display:block;animation:up .2s;}
-  .mob-filter-btn{display:flex;width:100%;padding:10px 12px;margin-bottom:12px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;align-items:center;justify-content:space-between;}
-  .mob-filter-btn.active{border-color:var(--red);color:var(--red);background:var(--red-light);}
-
-  /* Product head */
-  .prod-head{flex-wrap:wrap;gap:8px;margin-bottom:10px;}
-  .prod-count{font-size:13px;flex:1 1 100%;}
-  .sort-wrap{margin-left:auto;}
-
-  /* Cards grid 2 colonnes */
-  .pgrid{grid-template-columns:1fr 1fr;gap:8px;}
-  
-  /* Cartes: image moins haute pour voir plus de contenu */
-  .pcard-img{height:110px;}
-  .pcard-body{padding:10px;}
-  .pcard-name{font-size:14px;margin-bottom:6px;}
-  .tags{gap:3px;margin-bottom:7px;}
-  .tag{font-size:9px;padding:2px 5px;}
-  .btn-add-cart{padding:8px;font-size:11px;margin-top:7px;}
-  .pton{font-size:14px;}
-  .pton-s{font-size:9px;}
-  .badge-stock{font-size:8px;padding:2px 6px;}
-
-  /* Modals */
-  .d-cols{grid-template-columns:1fr;}
-  .grid2{grid-template-columns:1fr;}
-  .dbody{padding:14px;}
-  .d-name{font-size:20px;}
-
+  .header-search{display:none;}
+  .live-pill{display:none;}
+  #filter-bar{display:none;}
+  #results-bar{top:52px;}
+  .rbar-sort-lbl{display:none;}
+  #mob-filter-bar{display:block;}
+  body{padding-bottom:64px;}
+  .ptable-head{display:none;}
+  .rbar-inner{padding:0 12px;}
+  .footer-grid{grid-template-columns:1fr;}
   /* Cart drawer plein écran */
   .cart-drawer{width:100%;max-width:100vw;}
-
-  /* Footer */
+  /* Modals */
+  .grid2{grid-template-columns:1fr;}
+  .dbody{padding:14px;}
   .footer-inner{flex-direction:column;gap:8px;text-align:center;}
-  .filter-chips{padding:6px 12px;}
 }
-@media(max-width:340px){
-  .pgrid{grid-template-columns:1fr;}
+@media(max-width:900px){
+  .header-search{max-width:340px;}
+}
+@media(max-width:390px){
+  .pgrid-v2{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:480px){
-  /* Sur petits mobiles, cacher aussi le texte Panier */
   .btn-panier-txt{display:none;}
 }
 
@@ -421,6 +381,140 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 .pager .pbtn{padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;}
 .pager .pbtn:disabled{opacity:.5;cursor:not-allowed;}
 .pager .pinfo{font-size:12px;color:var(--gray);font-weight:600;}
+
+/* ── FILTER BAR ── */
+#filter-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:var(--z-filterbar);padding:0 24px;}
+.fbar-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:8px;height:48px;overflow-x:auto;scrollbar-width:none;}
+.fbar-inner::-webkit-scrollbar{display:none;}
+.fbar-sep{width:1px;height:20px;background:var(--border);flex-shrink:0;}
+/* Filter pills in bar */
+.fb-pill{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--ink2);white-space:nowrap;flex-shrink:0;}
+.fb-pill:hover{border-color:var(--red);color:var(--red);}
+.fb-pill.active{background:var(--red);border-color:var(--red);color:#fff;}
+/* Compact range input in filter bar */
+.fb-range{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.fb-range-lbl{font-size:11px;color:var(--gray);font-weight:600;white-space:nowrap;}
+.fb-inp{width:56px;padding:4px 6px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:12px;color:var(--ink);background:var(--white);outline:none;transition:border-color .15s;text-align:center;}
+.fb-inp:focus{border-color:var(--red);}
+.fb-inp-wide{width:72px;}
+/* Compact MSD in filter bar */
+.fb-msd{position:relative;flex-shrink:0;}
+.fb-msd-btn{display:flex;align-items:center;gap:5px;padding:5px 10px;border:1.5px solid var(--border);border-radius:20px;background:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.fb-msd-btn:hover,.fb-msd-btn.open{border-color:var(--red);color:var(--red);}
+.fb-msd-btn .msd-count{font-size:10px;padding:1px 5px;}
+.fb-msd-arrow{font-size:9px;color:var(--gray);}
+/* Active filter chips row */
+#active-chips{max-width:1320px;margin:0 auto;padding:6px 24px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
+#active-chips:empty{display:none;padding:0;}
+
+/* ── RESULTS BAR ── */
+#results-bar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:100px;z-index:var(--z-resultsbar);}
+.rbar-inner{max-width:1320px;margin:0 auto;padding:0 24px;height:40px;display:flex;align-items:center;gap:12px;}
+.rbar-count{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.5px;color:var(--ink);flex:1;}
+.rbar-count span{color:var(--red);}
+.rbar-sort{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.rbar-sort-lbl{font-size:11px;color:var(--gray);font-weight:500;}
+.rbar-sel{padding:4px 8px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;cursor:pointer;background:var(--white);color:var(--ink);}
+.rbar-sel:focus{border-color:var(--red);}
+.view-toggle{display:flex;border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;flex-shrink:0;}
+.view-btn{padding:4px 8px;background:var(--white);border:none;cursor:pointer;font-size:14px;color:var(--gray);transition:all .15s;}
+.view-btn.active{background:var(--red);color:#fff;}
+.rbar-reset{font-size:11px;color:var(--gray);cursor:pointer;font-weight:600;padding:4px 8px;border-radius:var(--r);transition:all .15s;flex-shrink:0;white-space:nowrap;background:none;border:none;}
+.rbar-reset:hover{color:var(--red);background:var(--red-light);}
+
+/* ── PRODUCT ROWS ── */
+.ptable{width:100%;border-collapse:collapse;}
+.ptable-head{position:sticky;top:140px;z-index:50;background:var(--off);border-bottom:2px solid var(--border);}
+.ptable-head th{padding:6px 8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--gray);text-align:left;white-space:nowrap;}
+.ptable-head th:first-child{width:36px;}
+.ptable-head th.col-ref{width:90px;}
+.ptable-head th.col-gsm{width:60px;text-align:right;}
+.ptable-head th.col-larg{width:70px;text-align:right;}
+.ptable-head th.col-mand{width:60px;text-align:right;}
+.ptable-head th.col-fmt{width:64px;}
+.ptable-head th.col-zone{width:50px;}
+.ptable-head th.col-poids{width:72px;text-align:right;}
+.ptable-head th.col-prix{width:100px;text-align:right;}
+.ptable-head th.col-cta{width:40px;}
+.prow{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;}
+.prow:hover{background:var(--off);}
+.prow td{padding:0 8px;height:var(--row-h);vertical-align:middle;font-size:12px;color:var(--ink2);}
+.prow-badge{display:inline-flex;align-items:center;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;}
+.prow-badge.qb-kraft{background:#fef3c7;color:#92400e;}
+.prow-badge.qb-sbs{background:#dbeafe;color:#1e3a8a;}
+.prow-badge.qb-fbb{background:#ede9fe;color:#5b21b6;}
+.prow-badge.qb-recyc{background:#dcfce7;color:#166534;}
+.prow-badge.qb-other{background:#f3f4f6;color:#374151;}
+.prow-ref{font-size:11px;font-weight:700;color:var(--ink2);font-family:'DM Sans',sans-serif;letter-spacing:.3px;}
+.prow-name{font-size:13px;color:var(--ink);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;}
+.prow-sub{font-size:11px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;}
+.prow-num{font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif;font-weight:600;text-align:right;}
+.prow-prix{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--red);letter-spacing:.3px;text-align:right;white-space:nowrap;}
+.prow-ask{font-size:10px;color:var(--gray);font-style:italic;text-align:right;}
+.prow-add{width:30px;height:28px;background:var(--off);border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.prow-add:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.prow-add.added{background:var(--success);color:#fff;border-color:var(--success);}
+.prow-zone{font-size:10px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
+
+/* ── CARDS V2 ── */
+.pgrid-v2{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.pcard-v2{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:14px;cursor:pointer;transition:all .2s;position:relative;}
+.pcard-v2:hover{border-color:rgba(254,0,0,.35);box-shadow:0 6px 24px rgba(254,0,0,.1);transform:translateY(-2px);}
+.pcard-v2-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.pcard-v2-badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.pcard-v2-badge.qb-kraft{background:#fef3c7;color:#92400e;}
+.pcard-v2-badge.qb-sbs{background:#dbeafe;color:#1e3a8a;}
+.pcard-v2-badge.qb-fbb{background:#ede9fe;color:#5b21b6;}
+.pcard-v2-badge.qb-recyc{background:#dcfce7;color:#166534;}
+.pcard-v2-badge.qb-other{background:#f3f4f6;color:#374151;}
+.pcard-v2-ref{font-size:10px;color:var(--gray2);font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.pcard-v2-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.3px;color:var(--black);line-height:1.1;margin-bottom:6px;}
+.pcard-v2-specs{font-size:12px;color:var(--ink2);margin-bottom:8px;line-height:1.6;}
+.pcard-v2-specs b{color:var(--ink);font-weight:600;}
+.pcard-v2-zone{font-size:10px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px;}
+.pcard-v2-foot{display:flex;justify-content:space-between;align-items:center;padding-top:9px;border-top:1px solid var(--border);}
+.pcard-v2-price{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);letter-spacing:.4px;}
+.pcard-v2-price-ask{font-size:11px;color:var(--gray);font-style:italic;}
+.pcard-v2-poids{font-size:12px;color:var(--ink2);font-weight:600;}
+.btn-add-v2{padding:7px 12px;background:var(--off);color:var(--ink);border:1.5px solid var(--border);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.btn-add-v2:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.btn-add-v2.added{background:var(--success);color:#fff;border-color:var(--success);}
+
+/* ── MOBILE FILTER DRAWER ── */
+#filter-drawer{position:fixed;bottom:0;left:0;right:0;height:90vh;background:var(--white);z-index:var(--z-drawer);border-radius:16px 16px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.2);transform:translateY(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
+#filter-drawer.open{transform:translateY(0);}
+.fd-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 6px;}
+.fd-head{padding:10px 16px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.fd-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;}
+.fd-close{width:30px;height:30px;border:1.5px solid var(--border);border-radius:50%;background:var(--white);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.fd-body{flex:1;overflow-y:auto;padding:12px 16px;}
+.fd-section{border-bottom:1px solid var(--border);margin-bottom:0;}
+.fd-section-head{display:flex;align-items:center;justify-content:space-between;padding:12px 0;cursor:pointer;}
+.fd-section-title{font-size:13px;font-weight:600;color:var(--ink);}
+.fd-section-arrow{font-size:10px;color:var(--gray);transition:transform .2s;}
+.fd-section.open .fd-section-arrow{transform:rotate(180deg);}
+.fd-section-body{padding-bottom:12px;display:none;}
+.fd-section.open .fd-section-body{display:block;}
+.fd-foot{padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0;}
+.btn-fd-apply{width:100%;padding:13px;background:var(--red);color:#fff;border:none;border-radius:var(--r);font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1.5px;cursor:pointer;}
+/* Mobile sticky bottom bar */
+#mob-filter-bar{display:none;position:fixed;bottom:0;left:0;right:0;padding:10px 16px;background:var(--white);border-top:1px solid var(--border);box-shadow:0 -4px 20px rgba(0,0,0,.08);z-index:90;}
+.mob-filter-trigger{width:100%;padding:12px;background:var(--black);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.mob-filter-badge{background:var(--red);color:#fff;border-radius:10px;font-size:11px;font-weight:700;padding:1px 7px;}
+#filter-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:calc(var(--z-drawer) - 1);display:none;}
+#filter-drawer-overlay.show{display:block;}
+
+/* ── SKELETON ROWS ── */
+.skel-row-wrap{width:100%;}
+.skel-row{display:flex;align-items:center;gap:12px;padding:0 8px;height:48px;border-bottom:1px solid var(--border);}
+.skel-block{border-radius:4px;background:linear-gradient(90deg,#E0E0E0 25%,#EFEFEF 50%,#E0E0E0 75%);background-size:400% 100%;animation:shimmer 1.4s infinite;}
+
+/* ── HIDE OLD UI ELEMENTS ── */
+.filters-panel{display:none !important;}
+.stats-bar{display:none !important;}
+.trust-bar{display:none !important;}
+.prod-head{display:none !important;}
+.filter-chips{display:none !important;}
 
 </style>
 </head>
@@ -459,6 +553,100 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
     </div>
   </div>
 </header>
+
+<!-- ── FILTER BAR ── -->
+<div id="filter-bar">
+  <div class="fbar-inner">
+    <!-- Format -->
+    <button class="fb-pill" id="fb-bobine" onclick="toggleFbPill('fb-bobine','bobine')">🧻 Bobine</button>
+    <button class="fb-pill" id="fb-palette" onclick="toggleFbPill('fb-palette','palette')">📦 Palette</button>
+    <div class="fbar-sep"></div>
+    <!-- Origine -->
+    <button class="fb-pill" id="fb-recyc" onclick="toggleFbPill('fb-recyc','recyc')">♻️ Recyclé</button>
+    <button class="fb-pill" id="fb-fab" onclick="toggleFbPill('fb-fab','fab')">🏭 Fabrication</button>
+    <div class="fbar-sep"></div>
+    <!-- Type -->
+    <div class="fb-msd" id="msd-type" style="position:relative;flex-shrink:0;">
+      <button class="fb-msd-btn" id="fb-type-btn" onclick="toggleFbMsd('msd-type')">
+        <span id="fb-type-label">Type</span>
+        <span class="msd-count" id="fb-type-count" style="display:none"></span>
+        <span class="fb-msd-arrow">▾</span>
+      </button>
+      <div class="msd-panel"></div>
+    </div>
+    <div class="fbar-sep"></div>
+    <!-- Grammage -->
+    <div class="fb-range">
+      <span class="fb-range-lbl">Gsm</span>
+      <input class="fb-inp" type="number" id="f-gmin" placeholder="min" oninput="scheduleFilter()">
+      <span style="color:var(--gray);font-size:11px">–</span>
+      <input class="fb-inp" type="number" id="f-gmax" placeholder="max" oninput="scheduleFilter()">
+    </div>
+    <div class="fbar-sep"></div>
+    <!-- Largeur -->
+    <div class="fb-range">
+      <span class="fb-range-lbl">Larg.</span>
+      <input class="fb-inp fb-inp-wide" type="number" id="f-lmin" placeholder="mm" oninput="scheduleFilter()">
+      <span style="color:var(--gray);font-size:11px">–</span>
+      <input class="fb-inp fb-inp-wide" type="number" id="f-lmax" placeholder="mm" oninput="scheduleFilter()">
+    </div>
+    <div class="fbar-sep"></div>
+    <!-- Mandrin -->
+    <div class="fb-msd" id="msd-mandrin" style="position:relative;flex-shrink:0;">
+      <button class="fb-msd-btn" id="fb-mandrin-btn" onclick="toggleFbMsd('msd-mandrin')">
+        <span id="fb-mandrin-label">Mandrin</span>
+        <span class="msd-count" id="fb-mandrin-count" style="display:none"></span>
+        <span class="fb-msd-arrow">▾</span>
+      </button>
+      <div class="msd-panel"></div>
+    </div>
+    <div class="fbar-sep"></div>
+    <!-- Couleur -->
+    <div class="fb-msd" id="msd-couleur" style="position:relative;flex-shrink:0;">
+      <button class="fb-msd-btn" id="fb-couleur-btn" onclick="toggleFbMsd('msd-couleur')">
+        <span id="fb-couleur-label">Couleur</span>
+        <span class="msd-count" id="fb-couleur-count" style="display:none"></span>
+        <span class="fb-msd-arrow">▾</span>
+      </button>
+      <div class="msd-panel"></div>
+    </div>
+    <div class="fbar-sep"></div>
+    <!-- Prix -->
+    <div class="fb-range">
+      <span class="fb-range-lbl">Prix</span>
+      <input class="fb-inp" type="number" id="f-pmin" placeholder="min" oninput="scheduleFilter()">
+      <span style="color:var(--gray);font-size:11px">–</span>
+      <input class="fb-inp" type="number" id="f-pmax" placeholder="max" oninput="scheduleFilter()">
+    </div>
+  </div>
+  <!-- Active chips -->
+  <div id="active-chips"></div>
+</div>
+
+<!-- ── RESULTS BAR ── -->
+<div id="results-bar">
+  <div class="rbar-inner">
+    <div class="rbar-count" id="rbar-count" role="status">
+      <span id="rbar-refs">—</span> références • <span id="rbar-tons">—</span> t
+    </div>
+    <div class="rbar-sort">
+      <span class="rbar-sort-lbl">Trier :</span>
+      <select class="rbar-sel" id="sort-sel" onchange="_doFilter()">
+        <option value="date_desc">Plus récents</option>
+        <option value="gsm_asc">Grammage ↑</option>
+        <option value="gsm_desc">Grammage ↓</option>
+        <option value="price_asc">Prix ↑</option>
+        <option value="price_desc">Prix ↓</option>
+      </select>
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn" id="view-rows-btn" onclick="setView('rows')" title="Vue liste">≡</button>
+      <button class="view-btn active" id="view-cards-btn" onclick="setView('cards')" title="Vue grille">⊞</button>
+    </div>
+    <button class="rbar-reset" id="rbar-reset" onclick="resetFilters()" style="display:none">✕ Effacer</button>
+  </div>
+</div>
+
 <div class="trust-bar">
   <div class="trust-inner">
     <span class="trust-item">Stock Europe</span>
@@ -514,8 +702,8 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         </div>
       </div>
       <div class="fg"><label class="fl">Type<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
-        <div class="msd" id="msd-type">
-          <button class="msd-btn" onclick="toggleMsd('msd-type')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
+        <div class="msd" id="msd-type-sidebar">
+          <button class="msd-btn" onclick="toggleMsd('msd-type-sidebar')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
             <div class="msd-option" data-val="Kraft" onclick="toggleMsdOption(this,'msd-type')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Kraft</div>
             <div class="msd-option" data-val="FBB" onclick="toggleMsdOption(this,'msd-type')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>FBB</div>
@@ -531,22 +719,23 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
       <div class="fg"><label class="fl">Grammage <span style="font-weight:400;font-size:11px;color:var(--gray)">(g/m²)</span></label>
         <div class="frow">
-          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-gmin" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
-          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-gmax" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
         </div>
       </div>
       <div class="fg"><label class="fl">Largeur <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
         <div class="fi-unit-wrap"><input type="number" class="fi" id="f-largeur" placeholder="ex: 1000" oninput="filterProducts()" style="width:100%"><span class="fi-unit">mm</span></div>
+
       </div>
       <div class="fg"><label class="fl">Prix (€/T)</label>
         <div class="frow">
-          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmin" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
-          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmax" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Min" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
         </div>
       </div>
       <div class="fg"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
-        <div class="msd" id="msd-mandrin">
-          <button class="msd-btn" onclick="toggleMsd('msd-mandrin')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
+        <div class="msd" id="msd-mandrin-sidebar">
+          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
             <div class="msd-option" data-val="70" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>70 mm</div>
             <div class="msd-option" data-val="76" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>76 mm</div>
@@ -556,8 +745,8 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         </div>
       </div>
       <div class="fg"><label class="fl">Couleur<span class="fl-count" id="fl-count-couleur" style="display:none">0</span></label>
-        <div class="msd" id="msd-couleur">
-          <button class="msd-btn" onclick="toggleMsd('msd-couleur')"><span class="msd-btn-label">Toutes</span><span class="msd-arrow">▾</span></button>
+        <div class="msd" id="msd-couleur-sidebar">
+          <button class="msd-btn" onclick="toggleMsd('msd-couleur-sidebar')"><span class="msd-btn-label">Toutes</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
             <div class="msd-option" data-val="Blanc" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Blanc</div>
             <div class="msd-option" data-val="Brun" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Brun</div>
@@ -753,6 +942,133 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
   </div>
 </footer>
 
+<!-- ── MOBILE FILTER DRAWER ── -->
+<div id="filter-drawer-overlay" onclick="closeFilterDrawer()"></div>
+<div id="filter-drawer">
+  <div class="fd-handle"></div>
+  <div class="fd-head">
+    <div class="fd-title">FILTRES</div>
+    <button class="fd-close" onclick="closeFilterDrawer()">✕</button>
+  </div>
+  <div class="fd-body">
+    <!-- Format -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Format</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body">
+        <div class="format-pills">
+          <button class="fpill" id="pill-bobine" data-format="Bobine" onclick="toggleFormatPill(this)"><span class="fpill-ico">🧻</span>Bobine</button>
+          <button class="fpill" id="pill-palette" data-format="Palette" onclick="toggleFormatPill(this)"><span class="fpill-ico">📦</span>Palette</button>
+        </div>
+      </div>
+    </div>
+    <!-- Origine -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Origine</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body">
+        <div class="format-pills">
+          <button class="fpill fpill-orig" id="pill-recyc" data-origine="R" onclick="toggleOriginePill(this)"><span class="fpill-ico">♻️</span>Recyclé</button>
+          <button class="fpill fpill-orig" id="pill-fab" data-origine="S" onclick="toggleOriginePill(this)"><span class="fpill-ico">🏭</span>Fabrication</button>
+        </div>
+      </div>
+    </div>
+    <!-- Type -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Type / Qualité</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body">
+        <div class="msd" id="fd-type-wrap" style="margin-top:6px;">
+          <button class="msd-btn" id="fd-msd-type-btn" onclick="toggleMsd('msd-type-mob')">
+            <span class="msd-btn-label" id="fd-msd-type-label">Tous</span>
+            <span class="msd-count" id="fd-msd-type-count" style="display:none"></span>
+            <span class="msd-arrow">▾</span>
+          </button>
+          <div class="msd-panel" id="msd-type-mob"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Grammage -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Grammage (g/m²)</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body" style="padding-top:6px;">
+        <div class="frow">
+          <div class="fi-unit-wrap"><input class="fi" type="number" id="f-gmin-mob" placeholder="min" oninput="syncMobFilter('f-gmin','f-gmin-mob')"><span class="fi-unit">g/m²</span></div>
+          <div class="fi-unit-wrap"><input class="fi" type="number" id="f-gmax-mob" placeholder="max" oninput="syncMobFilter('f-gmax','f-gmax-mob')"><span class="fi-unit">g/m²</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Largeur -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Largeur (mm)</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body" style="padding-top:6px;">
+        <div class="frow">
+          <input class="fi" type="number" id="f-lmin-mob" placeholder="min mm" oninput="syncMobFilter('f-lmin','f-lmin-mob')">
+          <input class="fi" type="number" id="f-lmax-mob" placeholder="max mm" oninput="syncMobFilter('f-lmax','f-lmax-mob')">
+        </div>
+      </div>
+    </div>
+    <!-- Mandrin -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Mandrin (mm)</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body" style="margin-top:6px;">
+        <div class="msd">
+          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-mob')">
+            <span class="msd-btn-label" id="fd-msd-mandrin-label">Tous</span>
+            <span class="msd-arrow">▾</span>
+          </button>
+          <div class="msd-panel" id="msd-mandrin-mob"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Couleur -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Couleur</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body" style="margin-top:6px;">
+        <div class="msd">
+          <button class="msd-btn" onclick="toggleMsd('msd-couleur-mob')">
+            <span class="msd-btn-label" id="fd-msd-couleur-label">Toutes</span>
+            <span class="msd-arrow">▾</span>
+          </button>
+          <div class="msd-panel" id="msd-couleur-mob"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Prix -->
+    <div class="fd-section open">
+      <div class="fd-section-head" onclick="toggleFdSection(this)">
+        <span class="fd-section-title">Prix (€/T)</span><span class="fd-section-arrow">▾</span>
+      </div>
+      <div class="fd-section-body" style="padding-top:6px;">
+        <div class="frow">
+          <div class="fi-unit-wrap"><input class="fi" type="number" id="f-pmin-mob" placeholder="min" oninput="syncMobFilter('f-pmin','f-pmin-mob')"><span class="fi-unit">€/T</span></div>
+          <div class="fi-unit-wrap"><input class="fi" type="number" id="f-pmax-mob" placeholder="max" oninput="syncMobFilter('f-pmax','f-pmax-mob')"><span class="fi-unit">€/T</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fd-foot">
+    <button class="btn-fd-apply" onclick="closeFilterDrawer()">Voir <span id="fd-count">—</span> résultats</button>
+  </div>
+</div>
+<!-- Mobile sticky filter trigger -->
+<div id="mob-filter-bar">
+  <button class="mob-filter-trigger" onclick="openFilterDrawer()">
+    🔧 Filtres <span class="mob-filter-badge" id="mob-filter-count" style="display:none">0</span>
+  </button>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="spin-bg" id="spinner"><div class="spin"></div></div>
 
@@ -852,6 +1168,20 @@ async function init(){
 
   buildMsdOptions('msd-mandrin',['70','76','150','152'],'Tous',v=>v+' mm');
 
+  // Also build mobile msd panels (msd-type-mob, msd-mandrin-mob, msd-couleur-mob)
+  buildMsdOptions('msd-type-mob',typeVals,'Tous',qlabel);
+  buildMsdOptions('msd-couleur-mob',
+    ['Blanc','Brun','Ivoire','Gris','Noir','Vert','Rouge','Bleu','Jaune','Orange','Argent','Couleur','Divers'],
+    'Toutes');
+  buildMsdOptions('msd-mandrin-mob',['70','76','150','152'],'Tous',v=>v+' mm');
+
+  // Set default view based on screen width
+  if(window.innerWidth>=768){
+    setView('rows');
+  }else{
+    setView('cards');
+  }
+
   // Single query: first page + total count
   await _doFilter();
 }
@@ -910,8 +1240,11 @@ function toggleMsdOption(el, id) {
 
 function updateMsdBtn(id) {
   const set = msdState[id];
-  const btn = document.querySelector(`#${id} .msd-btn`);
-  const label = btn.querySelector('.msd-btn-label');
+  // Support both .msd-btn (sidebar) and .fb-msd-btn (filter bar)
+  const btn = document.querySelector(`#${id} .msd-btn`) || document.querySelector(`#${id} .fb-msd-btn`);
+  if(!btn) return;
+  const label = btn.querySelector('.msd-btn-label') || btn.querySelector('span:first-child');
+  if(!label) return;
   // Remove old count badge
   const old = btn.querySelector('.msd-count');
   if (old) old.remove();
@@ -924,7 +1257,8 @@ function updateMsdBtn(id) {
     const badge = document.createElement('span');
     badge.className = 'msd-count';
     badge.textContent = set.size;
-    btn.insertBefore(badge, btn.querySelector('.msd-arrow'));
+    const arrow = btn.querySelector('.msd-arrow') || btn.querySelector('.fb-msd-arrow');
+    if(arrow) btn.insertBefore(badge, arrow);
   }
 }
 
@@ -946,9 +1280,9 @@ function resetMsd(id) {
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', e => {
-  if (!e.target.closest('.msd')) {
+  if (!e.target.closest('.msd') && !e.target.closest('.fb-msd')) {
     document.querySelectorAll('.msd-panel.show').forEach(p => p.classList.remove('show'));
-    document.querySelectorAll('.msd-btn.open').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.msd-btn.open,.fb-msd-btn.open').forEach(b => b.classList.remove('open'));
   }
 });
 
@@ -989,7 +1323,20 @@ async function _doFilter(){
 }
 async function _fetchAndRender(token){
   const g=document.getElementById('pgrid');
-  if(g)g.innerHTML=Array(6).fill(`<div class="skeleton"><div class="sk-img"></div><div class="sk-body"><div class="sk-line" style="width:60%"></div><div class="sk-line" style="width:40%"></div></div></div>`).join('');
+  if(g){
+    g.className=viewMode==='rows'?'':'pgrid-v2';
+    g.innerHTML=`<div class="skel-row-wrap">${Array(8).fill(0).map((_,i)=>`
+  <div class="skel-row">
+    <div class="skel-block" style="width:50px;height:20px;border-radius:3px;"></div>
+    <div class="skel-block" style="width:70px;height:14px;"></div>
+    <div class="skel-block" style="flex:1;height:14px;"></div>
+    <div class="skel-block" style="width:40px;height:14px;"></div>
+    <div class="skel-block" style="width:40px;height:14px;"></div>
+    <div class="skel-block" style="width:60px;height:14px;"></div>
+    <div class="skel-block" style="width:30px;height:14px;"></div>
+    <div class="skel-block" style="width:80px;height:24px;border-radius:var(--r);"></div>
+  </div>`).join('')}</div>`;
+  }
 
   // Build query
   const q=document.getElementById('search-input').value.trim();
@@ -999,11 +1346,14 @@ async function _fetchAndRender(token){
   const la=+document.getElementById('f-largeur').value||0;
   const pn=+document.getElementById('f-pmin').value||0;
   const px=+document.getElementById('f-pmax').value||0;
+  const lmin=+document.getElementById('f-lmin').value||0;
+  const lmax=+document.getElementById('f-lmax').value||0;
   const mandrins=getMsdValues('msd-mandrin');
   const couleurs=getMsdValues('msd-couleur');
   const formats=new Set([...document.querySelectorAll('.fpill.active')].map(b=>b.dataset.format));
   const origines=new Set([...document.querySelectorAll('.fpill-orig.active')].map(b=>b.dataset.origine));
-  const s=document.getElementById('sort-select').value;
+  const sortEl=document.getElementById('sort-sel')||document.getElementById('sort-select');
+  const s=sortEl?sortEl.value:'date_desc';
 
   let query=sb.from('products').select('*');
 
@@ -1011,7 +1361,9 @@ async function _fetchAndRender(token){
   if(types.size>0)query=query.in('quality',[...types]);
   if(gn)query=query.gte('gsm',gn);
   if(gx)query=query.lte('gsm',gx);
-  if(la)query=query.eq('width',la);
+  if(lmin)query=query.gte('width',lmin);
+  if(lmax)query=query.lte('width',lmax);
+  if(la&&!lmin&&!lmax)query=query.eq('width',la);
   if(mandrins.size>0)query=query.in('noyau',[...mandrins]);
   if(couleurs.size>0)query=query.or([...couleurs].map(c=>`color.ilike.%${c}%`).join(','));
   if(formats.size>0)query=query.in('format',[...formats]);
@@ -1019,10 +1371,10 @@ async function _fetchAndRender(token){
   if(pn)query=query.gte('price',pn);
   if(px)query=query.lte('price',px);
 
-  if(s==='grammage_asc')query=query.order('gsm',{ascending:true,nullsFirst:false});
-  else if(s==='grammage_desc')query=query.order('gsm',{ascending:false,nullsFirst:false});
-  else if(s==='prix_asc')query=query.order('price',{ascending:true,nullsFirst:false});
-  else if(s==='prix_desc')query=query.order('price',{ascending:false,nullsFirst:false});
+  if(s==='gsm_asc'||s==='grammage_asc')query=query.order('gsm',{ascending:true,nullsFirst:false});
+  else if(s==='gsm_desc'||s==='grammage_desc')query=query.order('gsm',{ascending:false,nullsFirst:false});
+  else if(s==='price_asc'||s==='prix_asc')query=query.order('price',{ascending:true,nullsFirst:false});
+  else if(s==='price_desc'||s==='prix_desc')query=query.order('price',{ascending:false,nullsFirst:false});
   else query=query.order('id',{ascending:false});
 
   const offset=(currentPage-1)*PAGE;
@@ -1054,6 +1406,19 @@ async function _fetchAndRender(token){
   _totalCount=all.length+(currentPage-1)*PAGE;
   // Update stats bar with real total
   const _st=document.getElementById('s-ton');if(_st&&_totalCount)_st.textContent=_totalCount.toLocaleString('fr-FR')+' réf.';
+  // Update results bar
+  const rbarRefs=document.getElementById('rbar-refs');
+  const rbarTons=document.getElementById('rbar-tons');
+  if(rbarRefs)rbarRefs.textContent=_totalCount.toLocaleString('fr-FR');
+  if(rbarTons){const totalTons=(all.reduce((s,p)=>s+(p.poids_net||0),0)/1000);rbarTons.textContent=totalTons.toFixed(1);}
+  // Update fd-count for mobile drawer
+  const fdCount=document.getElementById('fd-count');
+  if(fdCount)fdCount.textContent=_totalCount.toLocaleString('fr-FR');
+  // Show/hide reset button
+  const rbarReset=document.getElementById('rbar-reset');
+  if(rbarReset)rbarReset.style.display=hasActiveFilters()?'':'none';
+  // Update mobile filter badge
+  updateMobFilterBadge();
 
   // Update counters
   const counters={'msd-type':'fl-count-type','msd-mandrin':'fl-count-mandrin','msd-couleur':'fl-count-couleur'};
@@ -1087,7 +1452,9 @@ function updateFilterChips(){
   const q=document.getElementById('search-input').value;
   const gn=document.getElementById('f-gmin').value;
   const gx=document.getElementById('f-gmax').value;
-  const la=document.getElementById('f-largeur').value;
+  const la=document.getElementById('f-largeur')?.value||'';
+  const lmin2=document.getElementById('f-lmin')?.value||'';
+  const lmax2=document.getElementById('f-lmax')?.value||'';
   if(q)chips.push({label:'Recherche : "'+q+'"',clear:()=>{document.getElementById('search-input').value='';document.getElementById('search-input-mob').value='';filterProducts();}});
   // Add format pills chip
   const _activeFmts=Array.from(document.querySelectorAll('.fpill.active')).map(b=>b.dataset.format);
@@ -1102,13 +1469,18 @@ function updateFilterChips(){
     }
   });
   if(gn||gx)chips.push({label:'Gram. : '+(gn||'—')+' → '+(gx||'—')+' g/m²',clear:()=>{document.getElementById('f-gmin').value='';document.getElementById('f-gmax').value='';filterProducts();}});
-  if(la)chips.push({label:'Largeur : '+la+'mm',clear:()=>{document.getElementById('f-largeur').value='';filterProducts();}});
+  if(la)chips.push({label:'Largeur : '+la+'mm',clear:()=>{const el=document.getElementById('f-largeur');if(el)el.value='';filterProducts();}});
+  if(lmin2||lmax2)chips.push({label:'Larg. : '+(lmin2||'—')+' → '+(lmax2||'—')+' mm',clear:()=>{['f-lmin','f-lmax','f-lmin-mob','f-lmax-mob'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});filterProducts();}});
   const cpn=document.getElementById('f-pmin').value,cpx=document.getElementById('f-pmax').value;
   if(cpn||cpx)chips.push({label:'Prix : '+(cpn||'—')+' → '+(cpx||'—')+' €/T',clear:()=>{document.getElementById('f-pmin').value='';document.getElementById('f-pmax').value='';filterProducts();}});
-  if(!chips.length){container.innerHTML='';return;}
-  container.innerHTML=chips.map((chip,i)=>`<div class="fchip" id="chip-${i}">${chip.label}<button onclick="clearChip(${i})" title="Retirer ce filtre">✕</button></div>`).join('')
+  if(!chips.length){container.innerHTML='';const ac2=document.getElementById('active-chips');if(ac2)ac2.innerHTML='';return;}
+  const chipsHtml=chips.map((chip,i)=>`<div class="fchip" id="chip-${i}">${chip.label}<button onclick="clearChip(${i})" title="Retirer ce filtre">✕</button></div>`).join('')
     +(chips.length>1?`<button class="chips-clear" onclick="resetFilters()">Tout effacer</button>`:'');
+  container.innerHTML=chipsHtml;
   container._chips=chips;
+  // Also update active-chips in filter bar
+  const ac=document.getElementById('active-chips');
+  if(ac){ac.innerHTML=chipsHtml;ac._chips=chips;}
   const mobBtn=document.getElementById('mob-filter-btn');
   if(mobBtn){
     if(chips.length){mobBtn.classList.add('active');document.getElementById('mob-filter-label').innerHTML='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:inline;vertical-align:-2px;margin-right:6px"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>Filtres actifs ('+chips.length+')';}
@@ -1117,7 +1489,9 @@ function updateFilterChips(){
 }
 function clearChip(i){
   const container=document.getElementById('filter-chips');
-  if(container._chips&&container._chips[i])container._chips[i].clear();
+  const ac=document.getElementById('active-chips');
+  const chips=(container&&container._chips)||(ac&&ac._chips);
+  if(chips&&chips[i])chips[i].clear();
 }
 
 function placeholderSvg(type){
@@ -1135,11 +1509,141 @@ function qbadge(qualite){
   const lbl=q.startsWith('R')?'♻ Recyclé':q.startsWith('S')?'★ Fabrication':qualite;
   return `<div class="pcard-qbadge ${cls}">${lbl}</div>`;
 }
+let viewMode='cards'; // 'rows' or 'cards'
+
+function setView(mode){
+  viewMode=mode;
+  document.getElementById('view-rows-btn').classList.toggle('active',mode==='rows');
+  document.getElementById('view-cards-btn').classList.toggle('active',mode==='cards');
+  if(all.length)render(all);
+}
+
+function renderRows(list){
+  const g=document.getElementById('pgrid');
+  if(!g)return;
+  function qbadgeClass(type){
+    if(!type)return 'qb-other';
+    const t=type.toLowerCase();
+    if(t.includes('kraft'))return 'qb-kraft';
+    if(t.includes('sbs'))return 'qb-sbs';
+    if(t.includes('fbb')||t.includes('duplex')||t.includes('triplex'))return 'qb-fbb';
+    if(t.includes('recycl')||t.includes('testliner')||t.includes('fluting'))return 'qb-recyc';
+    return 'qb-other';
+  }
+  const rows=list.map(p=>{
+    const bclass=qbadgeClass(p.type);
+    const prixHtml=p.price
+      ?`<div class="prow-prix">${p.price.toLocaleString('fr-FR')} €/T</div>`
+      :`<div class="prow-ask">Sur demande</div>`;
+    const poids=p.poids_net?`${(p.poids_net/1000).toFixed(1)} T`:'—';
+    const gsm=p.grammage?`${p.grammage}`:'—';
+    const larg=p.largeur?`${p.largeur}`:'—';
+    const mand=p.noyau?`Ø${p.noyau}`:'—';
+    const fmt2=p.format||'—';
+    const zone=p.zone?p.zone.substring(0,6):'—';
+    return`<tr class="prow" onclick="openDetail(${p.id})">
+      <td><span class="prow-badge ${bclass}">${p.type||'?'}</span></td>
+      <td><span class="prow-ref">${p.ref||'—'}</span></td>
+      <td><div class="prow-name">${p.name||p.type||'—'}</div>${p.couleur?`<div class="prow-sub">${p.couleur}</div>`:''}</td>
+      <td class="prow-num">${gsm}</td>
+      <td class="prow-num">${larg}</td>
+      <td class="prow-num">${mand}</td>
+      <td><span class="prow-zone">${fmt2}</span></td>
+      <td><span class="prow-zone">${zone}</span></td>
+      <td class="prow-num">${poids}</td>
+      <td>${prixHtml}</td>
+      <td><button class="prow-add" id="radd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})" title="Ajouter">+</button></td>
+    </tr>`;
+  }).join('');
+  g.innerHTML=`<table class="ptable">
+    <thead class="ptable-head">
+      <tr>
+        <th>Qualité</th>
+        <th class="col-ref">Réf.</th>
+        <th>Nom / Détails</th>
+        <th class="col-gsm">Gsm</th>
+        <th class="col-larg">Larg.</th>
+        <th class="col-mand">Mandrin</th>
+        <th class="col-fmt">Format</th>
+        <th class="col-zone">Zone</th>
+        <th class="col-poids">Poids</th>
+        <th class="col-prix">Prix</th>
+        <th class="col-cta"></th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function renderCards(list){
+  const g=document.getElementById('pgrid');
+  if(!g)return;
+  function qbadgeClass(type){
+    if(!type)return 'qb-other';
+    const t=type.toLowerCase();
+    if(t.includes('kraft'))return 'qb-kraft';
+    if(t.includes('sbs'))return 'qb-sbs';
+    if(t.includes('fbb')||t.includes('duplex')||t.includes('triplex'))return 'qb-fbb';
+    if(t.includes('recycl')||t.includes('testliner')||t.includes('fluting'))return 'qb-recyc';
+    return 'qb-other';
+  }
+  g.className='pgrid-v2';
+  g.innerHTML=list.map(p=>{
+    const bclass=qbadgeClass(p.type);
+    const specs=[
+      p.grammage?`<b>${p.grammage}</b> g/m²`:null,
+      p.largeur?`<b>${p.largeur}</b> mm`:null,
+      p.noyau?`Ø<b>${p.noyau}</b>`:null,
+      p.format||null
+    ].filter(Boolean).join(' · ');
+    const prixHtml=p.price
+      ?`<span class="pcard-v2-price">${p.price.toLocaleString('fr-FR')} €/T</span>`
+      :`<span class="pcard-v2-price-ask">Sur demande</span>`;
+    const poids=p.poids_net?`${(p.poids_net/1000).toFixed(1)} T`:'';
+    return`<div class="pcard-v2" onclick="openDetail(${p.id})">
+      <div class="pcard-v2-top">
+        <span class="pcard-v2-badge ${bclass}">${p.type||'—'}</span>
+        <span class="pcard-v2-ref">${p.ref||''}</span>
+      </div>
+      <div class="pcard-v2-name">${p.name||p.type||'—'}</div>
+      <div class="pcard-v2-specs">${specs}</div>
+      ${p.couleur?`<div class="pcard-v2-zone">${p.couleur}${p.zone?' · '+p.zone:''}</div>`:(p.zone?`<div class="pcard-v2-zone">${p.zone}</div>`:'')}
+      <div class="pcard-v2-foot">
+        <div>
+          ${prixHtml}
+          ${poids?`<div style="font-size:11px;color:var(--gray);margin-top:1px;">${poids}</div>`:''}
+        </div>
+        <button class="btn-add-v2" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})">+ Ajouter</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function render(list){
+  const g=document.getElementById('pgrid');
+  if(!g)return;
+  if(!list||list.length===0){
+    g.className='pgrid-v2';
+    g.innerHTML=`<div class="empty" style="grid-column:1/-1">
+      <div class="empty-svg">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <div class="empty-lbl">Aucun résultat</div>
+      <div class="empty-sub">Essayez d'élargir vos filtres.</div>
+      <button class="btn-empty-reset" onclick="resetFilters()">↺ Réinitialiser</button>
+    </div>`;
+    return;
+  }
+  if(viewMode==='rows'){g.className='';renderRows(list);}
+  else{renderCards(list);}
+}
+
+// Legacy render_old kept for reference (not called anymore)
+function _render_legacy(list){
   const g=document.getElementById('pgrid');
   // Count display uses _totalCount from server (or list.length for empty state)
   const displayCount=_totalCount||list.length;
-  document.getElementById('prod-count').textContent=displayCount.toLocaleString('fr-FR')+' PRODUIT'+(displayCount!==1?'S':'');
+  const _pc=document.getElementById('prod-count');if(_pc)_pc.textContent=displayCount.toLocaleString('fr-FR')+' PRODUIT'+(displayCount!==1?'S':'');
   const _tc=document.getElementById('pcount-tons');if(_tc)_tc.textContent='';
   if(!list.length){g.innerHTML=`<div class="empty">
     <svg class="empty-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1179,7 +1683,8 @@ function render(list){
 }
 
 async function openDetail(id){
-  const p = all.find(x=>x.id===id); if(!p) return;
+  // eslint-disable-next-line eqeqeq
+  const p = all.find(x=>x.id==id); if(!p) return;
   cur = p;
 
   // Image
@@ -1267,9 +1772,16 @@ function resetFilters(){
   ['msd-type','msd-mandrin','msd-couleur'].forEach(id=>resetMsd(id));
   document.querySelectorAll('.fpill.active').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.fpill-orig.active').forEach(b=>b.classList.remove('active'));
-  ['f-pmin','f-pmax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  ['f-gmin','f-gmax','f-largeur','search-input','search-input-mob'].forEach(id=>document.getElementById(id).value='');
-  updateFilterChips();currentPage=1;render(all);
+  ['fb-bobine','fb-palette','fb-recyc','fb-fab'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
+  ['f-pmin','f-pmax','f-lmin','f-lmax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-gmin','f-gmax','f-largeur'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['search-input','search-input-mob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  // Reset mobile drawer inputs too
+  ['f-gmin-mob','f-gmax-mob','f-lmin-mob','f-lmax-mob','f-pmin-mob','f-pmax-mob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  updateFilterChips();
+  const ac=document.getElementById('active-chips');if(ac)ac.innerHTML='';
+  const rr=document.getElementById('rbar-reset');if(rr)rr.style.display='none';
+  currentPage=1;_doFilter();
 }
 function toggleMobFilters(){
   const panel=document.getElementById('filters-panel');
@@ -1288,18 +1800,28 @@ function updateCartBadge(){
 }
 
 function addToCart(id){
-  const p=all.find(x=>x.id===id);if(!p)return;
-  if(cart.find(x=>x.id===id)){toast('⚠️ Déjà dans le panier');return;}
+  // eslint-disable-next-line eqeqeq
+  const p=all.find(x=>x.id==id);if(!p)return;
+  // eslint-disable-next-line eqeqeq
+  if(cart.find(x=>x.id==id)){toast('⚠️ Déjà dans le panier');return;}
   cart.push({id:p.id,name:p.name,ref:p.ref,type:p.type,grammage:p.grammage,largeur:p.largeur,format:p.format,poids_net:p.poids_net,img:p.product_photos?.[0]?.url||null});
   localStorage.setItem('prodi_cart',JSON.stringify(cart));
   updateCartBadge();
+  // Update legacy cards
   document.querySelectorAll('.btn-add-cart').forEach(btn=>{
     if(btn.getAttribute('onclick')?.includes(id)){
       btn.classList.add('added');
-      btn.querySelector('.cart-txt').textContent='Ajouté !';
-      setTimeout(()=>{btn.classList.remove('added');btn.querySelector('.cart-txt').textContent='Ajouter au panier';},1800);
+      const t=btn.querySelector('.cart-txt');
+      if(t){t.textContent='Ajouté !';}
+      setTimeout(()=>{btn.classList.remove('added');if(t)t.textContent='Ajouter au panier';},1800);
     }
   });
+  // Update row view button
+  const raddBtn=document.getElementById('radd-'+id);
+  if(raddBtn){raddBtn.classList.add('added');raddBtn.textContent='✓';setTimeout(()=>{raddBtn.classList.remove('added');raddBtn.textContent='+';},1800);}
+  // Update card v2 button
+  const caddBtn=document.getElementById('cadd-'+id);
+  if(caddBtn){caddBtn.classList.add('added');caddBtn.textContent='✓ Ajouté';setTimeout(()=>{caddBtn.classList.remove('added');caddBtn.textContent='+ Ajouter';},1800);}
   toast('✅ Ajouté au panier !');
   renderDrawer();
 }
@@ -1400,8 +1922,10 @@ async function sendCartProforma(){
 // Reposition open panels on scroll
 document.addEventListener('scroll',()=>{
   document.querySelectorAll('.msd-panel.show').forEach(panel=>{
-    const id=panel.closest('.msd').id;
-    const btn=document.querySelector(`#${id} .msd-btn`);
+    const wrapper=panel.closest('.msd')||panel.closest('.fb-msd');
+    if(!wrapper)return;
+    const id=wrapper.id;
+    const btn=document.querySelector(`#${id} .msd-btn`)||document.querySelector(`#${id} .fb-msd-btn`);
     if(btn){const r=btn.getBoundingClientRect();panel.style.top=(r.bottom+4)+'px';panel.style.left=r.left+'px';}
   });
 },true);
@@ -1411,6 +1935,90 @@ document.addEventListener('keydown',e=>{
     document.getElementById('confirm-bg').classList.remove('show');
   }
 });
+
+// ── NEW FILTER BAR FUNCTIONS ──
+
+function scheduleFilter(){
+  filterProducts();
+}
+
+function toggleFbPill(btnId,type){
+  const mappings={
+    'fb-bobine':{oldId:'pill-bobine',type:'bobine'},
+    'fb-palette':{oldId:'pill-palette',type:'palette'},
+    'fb-recyc':{oldId:'pill-recyc',type:'recyc'},
+    'fb-fab':{oldId:'pill-fab',type:'fab'}
+  };
+  const m=mappings[btnId];
+  if(!m)return;
+  const oldPill=document.getElementById(m.oldId);
+  const fbPill=document.getElementById(btnId);
+  if(!fbPill)return;
+  const isActive=fbPill.classList.toggle('active');
+  if(oldPill){oldPill.classList.toggle('active',isActive);}
+  filterProducts();
+}
+
+function toggleFbMsd(wrapperId){
+  const wrap=document.getElementById(wrapperId);
+  if(!wrap)return;
+  const btn=wrap.querySelector('.fb-msd-btn');
+  const panel=wrap.querySelector('.msd-panel');
+  if(!panel||!btn)return;
+  const isOpen=panel.classList.contains('show');
+  // Close all
+  document.querySelectorAll('.fb-msd-btn.open,.msd-btn.open').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.msd-panel.show').forEach(p=>p.classList.remove('show'));
+  if(!isOpen){
+    btn.classList.add('open');
+    const rect=btn.getBoundingClientRect();
+    panel.style.top=(rect.bottom+4)+'px';
+    panel.style.left=rect.left+'px';
+    panel.classList.add('show');
+  }
+}
+
+function openFilterDrawer(){
+  document.getElementById('filter-drawer').classList.add('open');
+  document.getElementById('filter-drawer-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeFilterDrawer(){
+  document.getElementById('filter-drawer').classList.remove('open');
+  document.getElementById('filter-drawer-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+function toggleFdSection(headEl){
+  headEl.parentElement.classList.toggle('open');
+}
+function syncMobFilter(destId,srcId){
+  const src=document.getElementById(srcId);
+  const dest=document.getElementById(destId);
+  if(src&&dest){dest.value=src.value;filterProducts();}
+}
+function updateMobFilterBadge(){
+  const n=countActiveFilters();
+  const badge=document.getElementById('mob-filter-count');
+  if(badge){badge.textContent=n;badge.style.display=n>0?'':'none';}
+}
+function countActiveFilters(){
+  let n=0;
+  if(document.getElementById('fb-bobine')?.classList.contains('active'))n++;
+  if(document.getElementById('fb-palette')?.classList.contains('active'))n++;
+  if(document.getElementById('fb-recyc')?.classList.contains('active'))n++;
+  if(document.getElementById('fb-fab')?.classList.contains('active'))n++;
+  if(document.getElementById('f-gmin')?.value)n++;
+  if(document.getElementById('f-gmax')?.value)n++;
+  if(document.getElementById('f-lmin')?.value)n++;
+  if(document.getElementById('f-lmax')?.value)n++;
+  if(document.getElementById('f-pmin')?.value)n++;
+  if(document.getElementById('f-pmax')?.value)n++;
+  ['msd-type','msd-mandrin','msd-couleur'].forEach(id=>{
+    if(msdState[id]&&msdState[id].size>0)n++;
+  });
+  return n;
+}
+function hasActiveFilters(){return countActiveFilters()>0;}
 
 updateCartBadge();
 init();
