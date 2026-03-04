@@ -1578,42 +1578,36 @@ function renderRows(list){
 function renderCards(list){
   const g=document.getElementById('pgrid');
   if(!g)return;
-  function qbadgeClass(type){
-    if(!type)return 'qb-other';
-    const t=type.toLowerCase();
-    if(t.includes('kraft'))return 'qb-kraft';
-    if(t.includes('sbs'))return 'qb-sbs';
-    if(t.includes('fbb')||t.includes('duplex')||t.includes('triplex'))return 'qb-fbb';
-    if(t.includes('recycl')||t.includes('testliner')||t.includes('fluting'))return 'qb-recyc';
-    return 'qb-other';
-  }
-  g.className='pgrid-v2';
+  g.className='pgrid';
   g.innerHTML=list.map(p=>{
-    const bclass=qbadgeClass(p.type);
-    const specs=[
-      p.grammage?`<b>${p.grammage}</b> g/m²`:null,
-      p.largeur?`<b>${p.largeur}</b> mm`:null,
-      p.noyau?`Ø<b>${p.noyau}</b>`:null,
-      p.format||null
-    ].filter(Boolean).join(' · ');
+    const initials=(p.type||'?').substring(0,2).toUpperCase();
+    const imgHtml=p.image_url
+      ?`<img src="${p.image_url}" alt="${p.name||''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'pcard-placeholder\\'><svg width=\\'40\\' height=\\'40\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%23ccc\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><polyline points=\\'21,15 16,10 5,21\\'/></svg><span class=\\'pcard-initials\\'>${initials}</span></div>'">`
+      :`<div class="pcard-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span class="pcard-initials">${initials}</span></div>`;
+    const badgeCls=p.origine==='R'?'recycled':p.origine==='S'?'standard':'other';
+    const badgeTxt=p.origine==='R'?'Recyclé':p.origine==='S'?'Standard':'Autre';
+    const tags=[
+      p.grammage?`<span class="tag tag-gsm">${p.grammage} g/m²</span>`:'',
+      p.largeur?`<span class="tag">${p.largeur} mm</span>`:'',
+      p.format?`<span class="tag">${p.format}</span>`:'',
+      p.couleur?`<span class="tag">${p.couleur}</span>`:''
+    ].join('');
+    const poids=p.poids_net?`${(p.poids_net/1000).toFixed(2)}`:'—';
     const prixHtml=p.price
-      ?`<span class="pcard-v2-price">${p.price.toLocaleString('fr-FR')} €/T</span>`
-      :`<span class="pcard-v2-price-ask">Sur demande</span>`;
-    const poids=p.poids_net?`${(p.poids_net/1000).toFixed(1)} T`:'';
-    return`<div class="pcard-v2" onclick="openDetail(${p.id})">
-      <div class="pcard-v2-top">
-        <span class="pcard-v2-badge ${bclass}">${p.type||'—'}</span>
-        <span class="pcard-v2-ref">${p.ref||''}</span>
-      </div>
-      <div class="pcard-v2-name">${p.name||p.type||'—'}</div>
-      <div class="pcard-v2-specs">${specs}</div>
-      ${p.couleur?`<div class="pcard-v2-zone">${p.couleur}${p.zone?' · '+p.zone:''}</div>`:(p.zone?`<div class="pcard-v2-zone">${p.zone}</div>`:'')}
-      <div class="pcard-v2-foot">
-        <div>
+      ?`<div class="pcard-price">${p.price.toLocaleString('fr-FR')} €/T</div>`
+      :`<div class="pcard-price-ask">Sur demande</div>`;
+    return`<div class="pcard" onclick="openDetail(${p.id})">
+      <div class="pcard-img">${imgHtml}<div class="pcard-qbadge ${badgeCls}">${badgeTxt}</div></div>
+      <div class="pcard-stripe"></div>
+      <div class="pcard-body">
+        <div class="pcard-ref">${p.ref||'—'}</div>
+        <div class="pcard-name">${p.name||p.type||'—'}</div>
+        <div class="tags">${tags}</div>
+        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+        <div class="pcard-foot">
+          <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
           ${prixHtml}
-          ${poids?`<div style="font-size:11px;color:var(--gray);margin-top:1px;">${poids}</div>`:''}
         </div>
-        <button class="btn-add-v2" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})">+ Ajouter</button>
       </div>
     </div>`;
   }).join('');
