@@ -599,21 +599,21 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
     </div>
     <div class="fbar-sep"></div>
     <!-- Laize -->
-    <div class="fb-range">
-      <span class="fb-range-lbl">Laize</span>
+    <div class="fb-range" id="fb-sec-laize">
+      <span class="fb-range-lbl" id="fb-laize-lbl">Laize</span>
       <input class="fb-inp fb-inp-wide" type="number" id="f-lmin" placeholder="mm" oninput="scheduleFilter()">
       <span style="color:var(--gray);font-size:11px">–</span>
       <input class="fb-inp fb-inp-wide" type="number" id="f-lmax" placeholder="mm" oninput="scheduleFilter()">
     </div>
-    <div class="fbar-sep"></div>
+    <div class="fbar-sep" id="fb-sep-longueur"></div>
     <!-- Longueur -->
-    <div class="fb-range">
+    <div class="fb-range" id="fb-sec-longueur">
       <span class="fb-range-lbl">Longueur</span>
       <input class="fb-inp fb-inp-wide" type="number" id="f-longmin" placeholder="mm" oninput="scheduleFilter()">
       <span style="color:var(--gray);font-size:11px">–</span>
       <input class="fb-inp fb-inp-wide" type="number" id="f-longmax" placeholder="mm" oninput="scheduleFilter()">
     </div>
-    <div class="fbar-sep"></div>
+    <div class="fbar-sep" id="fb-sep-mandrin"></div>
     <!-- Mandrin -->
     <div class="fb-msd" id="msd-mandrin" style="position:relative;flex-shrink:0;">
       <button class="fb-msd-btn" id="fb-mandrin-btn" onclick="toggleFbMsd('msd-mandrin')">
@@ -740,10 +740,10 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
           <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">g/m²</span></div>
         </div>
       </div>
-      <div class="fg"><label class="fl">Laize <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
+      <div class="fg" id="sb-sec-laize"><label class="fl" id="sb-laize-lbl">Laize <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
         <div class="fi-unit-wrap"><input type="number" class="fi" id="f-largeur" placeholder="ex: 1000" oninput="filterProducts()" style="width:100%"><span class="fi-unit">mm</span></div>
       </div>
-      <div class="fg"><label class="fl">Longueur <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
+      <div class="fg" id="sb-sec-longueur"><label class="fl">Longueur <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
         <div class="fi-unit-wrap"><input type="number" class="fi" id="f-longueur" placeholder="ex: 700" oninput="filterProducts()" style="width:100%"><span class="fi-unit">mm</span></div>
       </div>
       <div class="fg"><label class="fl">Prix (€/T)</label>
@@ -752,7 +752,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
           <div class="fi-unit-wrap"><input type="number" class="fi" placeholder="Max" oninput="filterProducts()"><span class="fi-unit">€/T</span></div>
         </div>
       </div>
-      <div class="fg"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
+      <div class="fg" id="sb-sec-mandrin"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
         <div class="msd" id="msd-mandrin-sidebar">
           <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Mandrins</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
@@ -1023,9 +1023,9 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
     </div>
     <!-- Laize -->
-    <div class="fd-section open">
+    <div class="fd-section open" id="mob-sec-laize">
       <div class="fd-section-head" onclick="toggleFdSection(this)">
-        <span class="fd-section-title">Laize (mm)</span><span class="fd-section-arrow">▾</span>
+        <span class="fd-section-title" id="mob-laize-title">Laize (mm)</span><span class="fd-section-arrow">▾</span>
       </div>
       <div class="fd-section-body" style="padding-top:6px;">
         <div class="frow">
@@ -1035,7 +1035,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
     </div>
     <!-- Longueur -->
-    <div class="fd-section open">
+    <div class="fd-section open" id="mob-sec-longueur">
       <div class="fd-section-head" onclick="toggleFdSection(this)">
         <span class="fd-section-title">Longueur (mm)</span><span class="fd-section-arrow">▾</span>
       </div>
@@ -1047,7 +1047,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
     </div>
     <!-- Mandrin -->
-    <div class="fd-section open">
+    <div class="fd-section open" id="mob-sec-mandrin">
       <div class="fd-section-head" onclick="toggleFdSection(this)">
         <span class="fd-section-title">Mandrin (mm)</span><span class="fd-section-arrow">▾</span>
       </div>
@@ -1209,6 +1209,7 @@ function hideLoadProgress(){
 }
 
 async function init(){
+  updateFilterVisibility();
   // Hardcoded filter options — no DB query needed for these
   const typeVals=Object.keys(TYPE_MAP).sort((a,b)=>a.localeCompare(b));
   buildMsdOptions('msd-type',typeVals,'Tous');
@@ -2061,6 +2062,38 @@ function scheduleFilter(){
   filterProducts();
 }
 
+function updateFilterVisibility(){
+  const bobine=document.getElementById('fb-bobine')?.classList.contains('active');
+  const palette=document.getElementById('fb-palette')?.classList.contains('active');
+  // Only Bobine → hide Longueur, show Mandrin
+  // Only Palette → hide Mandrin, show Longueur; rename Laize → Largeur
+  // Both or neither → show all
+  const onlyBobine = bobine && !palette;
+  const onlyPalette = palette && !bobine;
+  const showLongueur = !onlyBobine;
+  const showMandrin  = !onlyPalette;
+  const laizeLbl = onlyPalette ? 'Largeur' : 'Laize';
+  // Filter bar
+  const show = (id,v) => { const el=document.getElementById(id); if(el) el.style.display=v?'':'none'; };
+  show('fb-sec-longueur', showLongueur);
+  show('fb-sep-longueur', showLongueur);
+  show('fb-sep-mandrin',  showMandrin);
+  const msdMandrin=document.getElementById('msd-mandrin');
+  if(msdMandrin) msdMandrin.style.display=showMandrin?'':'none';
+  const fbLaizeLbl=document.getElementById('fb-laize-lbl');
+  if(fbLaizeLbl) fbLaizeLbl.textContent=laizeLbl;
+  // Sidebar
+  show('sb-sec-longueur', showLongueur);
+  show('sb-sec-mandrin',  showMandrin);
+  const sbLbl=document.getElementById('sb-laize-lbl');
+  if(sbLbl) sbLbl.firstChild.textContent=laizeLbl+' ';
+  // Mobile drawer
+  show('mob-sec-longueur', showLongueur);
+  show('mob-sec-mandrin',  showMandrin);
+  const mobLbl=document.getElementById('mob-laize-title');
+  if(mobLbl) mobLbl.textContent=laizeLbl+' (mm)';
+}
+
 function toggleFbPill(btnId,type){
   const mappings={
     'fb-bobine':{oldId:'pill-bobine',type:'bobine'},
@@ -2075,6 +2108,7 @@ function toggleFbPill(btnId,type){
   if(!fbPill)return;
   const isActive=fbPill.classList.toggle('active');
   if(oldPill){oldPill.classList.toggle('active',isActive);}
+  updateFilterVisibility();
   filterProducts();
 }
 
