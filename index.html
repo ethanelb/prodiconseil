@@ -746,7 +746,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         </div>
       </div>
 
-      <div class="fg"><label class="fl">Type<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
+      <div class="fg"><label class="fl">Référence<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
         <div class="msd" id="msd-type-sidebar">
           <button class="msd-btn" onclick="toggleMsd('msd-type-sidebar')"><span class="msd-btn-label">Tous</span><span class="msd-arrow">▾</span></button>
           <div class="msd-panel">
@@ -1018,7 +1018,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
     <!-- Type -->
     <div class="fd-section open">
       <div class="fd-section-head" onclick="toggleFdSection(this)">
-        <span class="fd-section-title">Type / Qualité</span><span class="fd-section-arrow">▾</span>
+        <span class="fd-section-title">Référence</span><span class="fd-section-arrow">▾</span>
       </div>
       <div class="fd-section-body">
         <div class="msd" id="fd-type-wrap" style="margin-top:6px;">
@@ -1701,7 +1701,7 @@ function renderRows(list){
   g.innerHTML=`<table class="ptable">
     <thead class="ptable-head">
       <tr>
-        <th>Qualité</th>
+        <th>Référence</th>
         <th class="col-ref">Réf.</th>
         <th>Nom / Détails</th>
         <th class="col-gsm">Gsm</th>
@@ -1844,7 +1844,7 @@ async function openDetail(id){
 
   // Specs grid
   const specDefs=[
-    {lbl:'Qualité',   val: p.qualite},
+    {lbl:'Référence', val: p.qualite},
     {lbl:'Couleur',   val: p.couleur},
     {lbl:'Grammage',  val: p.grammage?p.grammage+' g/m²':null},
     {lbl:'Laize', val: p.largeur?p.largeur+' mm':null},
