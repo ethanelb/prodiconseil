@@ -811,6 +811,17 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
           <div class="msd-panel"></div>
         </div>
       </div>
+      <div class="fg" id="sb-sec-mandrin"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
+        <div class="msd" id="msd-mandrin-sidebar">
+          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Mandrins</span><span class="msd-arrow">▾</span></button>
+          <div class="msd-panel">
+            <div class="msd-option" data-val="70" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>70 mm</div>
+            <div class="msd-option" data-val="76" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>76 mm</div>
+            <div class="msd-option" data-val="150" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>150 mm</div>
+            <div class="msd-option" data-val="152" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>152 mm</div>
+          </div>
+        </div>
+      </div>
       <div class="fg"><label class="fl">Grammage <span style="font-weight:400;font-size:11px;color:var(--gray)">(g/m²)</span></label>
         <div class="frow">
           <div class="fi-unit-wrap"><input type="number" class="fi" id="f-gmin-sb" placeholder="Min" oninput="syncSbFilter('f-gmin',this.value)"><span class="fi-unit">g/m²</span></div>
@@ -827,17 +838,6 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         <div class="frow">
           <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmin-sb" placeholder="Min" oninput="syncSbFilter('f-pmin',this.value)"><span class="fi-unit">€/T</span></div>
           <div class="fi-unit-wrap"><input type="number" class="fi" id="f-pmax-sb" placeholder="Max" oninput="syncSbFilter('f-pmax',this.value)"><span class="fi-unit">€/T</span></div>
-        </div>
-      </div>
-      <div class="fg" id="sb-sec-mandrin"><label class="fl">Mandrin <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span><span class="fl-count" id="fl-count-mandrin" style="display:none">0</span></label>
-        <div class="msd" id="msd-mandrin-sidebar">
-          <button class="msd-btn" onclick="toggleMsd('msd-mandrin-sidebar')"><span class="msd-btn-label">Mandrins</span><span class="msd-arrow">▾</span></button>
-          <div class="msd-panel">
-            <div class="msd-option" data-val="70" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>70 mm</div>
-            <div class="msd-option" data-val="76" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>76 mm</div>
-            <div class="msd-option" data-val="150" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>150 mm</div>
-            <div class="msd-option" data-val="152" onclick="toggleMsdOption(this,'msd-mandrin')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>152 mm</div>
-          </div>
         </div>
       </div>
 
