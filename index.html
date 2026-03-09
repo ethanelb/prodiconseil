@@ -1195,7 +1195,7 @@ const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI
 const sb=supabase.createClient(SURL,SKEY);
 const WA='33649754915';
 let all=[],cur=null;
-const PAGE=50; let currentPage=1,_totalCount=0,_reqToken=0,_lastCorrections=[];
+const PAGE=52; let currentPage=1,_totalCount=0,_reqToken=0,_lastCorrections=[];
 const ico=t=>({Kraft:'📦',FBB:'🗂️',SBS:'📋',Testliner:'🧱',Fluting:'〰️',Offset:'🧻',Thermique:'🏷️',Duplex:'📄',Triplex:'📑'}[t]||'📦');
 const fmt=kg=>!kg?'—':kg>=1000?(kg/1000).toFixed(1)+' t':kg+' kg';
 // Maps user-visible type label → actual DB quality codes
