@@ -1855,6 +1855,15 @@ function decodeQuality(raw){
   return{cls,txt};
 }
 
+function formatLabel(p){
+  if(!p||!p.format)return null;
+  if(p.format.toLowerCase().includes('palette')&&(p.largeur||p.longueur)){
+    const dims=[p.largeur,p.longueur].filter(Boolean).join('×');
+    return `Palette ${dims}`;
+  }
+  return p.format;
+}
+
 function renderRows(list){
   const g=document.getElementById('pgrid');
   if(!g)return;
@@ -1868,7 +1877,7 @@ function renderRows(list){
     const gsm=p.grammage?`${p.grammage}`:'—';
     const larg=p.largeur?`${p.largeur}`:'—';
     const mand=p.noyau?`Ø${p.noyau}`:'—';
-    const fmt2=p.format||'—';
+    const fmt2=formatLabel(p)||'—';
     const {txt:btext}=decodeQuality(p.type);
     return`<tr class="prow" onclick="openDetail(${p.id})">
       <td><span class="prow-badge ${bclass}">${btext}</span></td>
@@ -1915,14 +1924,12 @@ function renderCards(list){
     const originTxt=(p.type||'').charAt(0)==='R'?'Recyclé':'Fabrication';
     const originCls=(p.type||'').charAt(0)==='R'?'qb-recyc':'qb-other';
     const isPalette=p.format&&p.format.toLowerCase().includes('palette');
-    const dimTag=isPalette
-      ?[p.largeur?`${p.largeur}`:null,p.longueur?`${p.longueur}`:null].filter(Boolean).join(' × ')+(p.largeur||p.longueur?' mm':'')
-      :p.largeur?`${p.largeur} mm`:'';
+    const dimTag=!isPalette&&p.largeur?`${p.largeur} mm`:'';
     const tags=[
       p.grammage?`<span class="tag tag-gsm">${p.grammage} g/m²</span>`:'',
       dimTag?`<span class="tag">${dimTag}</span>`:'',
       p.noyau?`<span class="tag">Ø${p.noyau} mm</span>`:'',
-      p.format?`<span class="tag">${p.format}</span>`:'',
+      formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:'',
       p.couleur?`<span class="tag">${p.couleur}</span>`:'',
     ].join('');
     const poids=p.poids_net?`${(p.poids_net/1000).toFixed(2)}`:'—';
@@ -1995,8 +2002,8 @@ function _render_legacy(list){
         <div class="pcard-name">${p.name}</div>
         <div class="tags">
           ${p.grammage?`<span class="tag tag-gsm">${p.grammage} g/m²</span>`:''}
-          ${p.largeur?`<span class="tag">${p.largeur} mm</span>`:''}
-          ${p.format?`<span class="tag">${p.format}</span>`:''}
+          ${(!p.format?.toLowerCase().includes('palette')&&p.largeur)?`<span class="tag">${p.largeur} mm</span>`:''}
+          ${formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:''}
           ${p.couleur?`<span class="tag">${p.couleur}</span>`:''}
         </div>
         <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> <span class="cart-txt">Ajouter au panier</span></button>
@@ -2033,7 +2040,7 @@ async function openDetail(id){
     {lbl:'Laize', val: p.largeur?p.largeur+' mm':null},
     {lbl:'Longueur', val: p.format==='Palette'&&p.longueur?p.longueur+' mm':null},
     {lbl:'Mandrin',   val: p.noyau?p.noyau+' mm':null},
-    {lbl:'Format',    val: p.format},
+    {lbl:'Format',    val: formatLabel(p)},
     {lbl:'Dépôt',     val: p.zone||p.emplacement},
   ].filter(s=>s.val);
   document.getElementById('det-specs').innerHTML=specDefs.map(s=>
