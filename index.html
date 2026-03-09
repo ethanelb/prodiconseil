@@ -2082,11 +2082,7 @@ function renderCards(list){
         <div class="pcard-ref">${p.ref||'—'}</div>
         <div class="pcard-name">${p.name||p.type||'—'}</div>
         <div class="tags">${tags}</div>
-        <div class="pcard-actions">
-          <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
-          <button class="btn-wa-card" onclick="event.stopPropagation();cardWa(${p.id})" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.117 1.522 5.847L.057 23.882l6.191-1.624A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 01-5.031-1.376l-.361-.214-3.735.979 1.001-3.648-.235-.374A9.86 9.86 0 012.108 12C2.108 6.58 6.58 2.108 12 2.108c5.421 0 9.893 4.472 9.893 9.892 0 5.421-4.472 9.894-9.893 9.894z"/></svg></button>
-          <button class="btn-cmp-card" id="cmp-${p.id}" onclick="event.stopPropagation();toggleCompare(${p.id})" title="Comparer">⊕</button>
-        </div>
+        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
         <div class="pcard-foot">
           <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
           ${prixHtml}
@@ -2149,11 +2145,7 @@ function _render_legacy(list){
           ${formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:''}
           ${p.couleur?`<span class="tag">${p.couleur}</span>`:''}
         </div>
-        <div class="pcard-actions">
-          <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
-          <button class="btn-wa-card" onclick="event.stopPropagation();cardWa('${p.id}')" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.117 1.522 5.847L.057 23.882l6.191-1.624A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 01-5.031-1.376l-.361-.214-3.735.979 1.001-3.648-.235-.374A9.86 9.86 0 012.108 12C2.108 6.58 6.58 2.108 12 2.108c5.421 0 9.893 4.472 9.893 9.892 0 5.421-4.472 9.894-9.893 9.894z"/></svg></button>
-          <button class="btn-cmp-card" id="cmp-${p.id}" onclick="event.stopPropagation();toggleCompare('${p.id}')" title="Comparer">⊕</button>
-        </div>
+        <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
         <div class="pcard-foot">
           <div><div class="pton">${fmt(p.poids_net)}</div></div>
           ${p.price?`<div class="pcard-price">${p.price} €/T</div>`:'<div class="pcard-price-ask">Prix sur demande</div>'}
