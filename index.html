@@ -762,24 +762,22 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
 
 
-      <div class="fg"><label class="fl">Type<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
-        <div id="sb-type-list" style="max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r);margin-top:4px;"></div>
+      <div class="fg">
+        <label class="fl">Type<span class="fl-count" id="fl-count-type" style="display:none">0</span></label>
+        <div class="msd" id="sb-msd-type">
+          <button class="msd-btn" data-msd-id="msd-type" onclick="toggleMsd('sb-msd-type')">
+            <span class="msd-btn-label">Type</span><span class="msd-arrow">▾</span>
+          </button>
+          <div class="msd-panel"></div>
+        </div>
       </div>
-      <div class="fg"><label class="fl">Couleur<span class="fl-count" id="fl-count-couleur" style="display:none">0</span></label>
-        <div id="sb-couleur-list" style="border:1px solid var(--border);border-radius:var(--r);margin-top:4px;max-height:200px;overflow-y:auto;">
-          <div class="msd-option" data-val="Blanc" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Blanc</div>
-          <div class="msd-option" data-val="Brun" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Brun</div>
-          <div class="msd-option" data-val="Ivoire" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Ivoire</div>
-          <div class="msd-option" data-val="Gris" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Gris</div>
-          <div class="msd-option" data-val="Noir" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Noir</div>
-          <div class="msd-option" data-val="Vert" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Vert</div>
-          <div class="msd-option" data-val="Rouge" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Rouge</div>
-          <div class="msd-option" data-val="Bleu" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Bleu</div>
-          <div class="msd-option" data-val="Jaune" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Jaune</div>
-          <div class="msd-option" data-val="Orange" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Orange</div>
-          <div class="msd-option" data-val="Argent" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Argent</div>
-          <div class="msd-option" data-val="Couleur" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Couleur</div>
-          <div class="msd-option" data-val="Divers" onclick="toggleMsdOption(this,'msd-couleur')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>Divers</div>
+      <div class="fg">
+        <label class="fl">Couleur<span class="fl-count" id="fl-count-couleur" style="display:none">0</span></label>
+        <div class="msd" id="sb-msd-couleur">
+          <button class="msd-btn" data-msd-id="msd-couleur" onclick="toggleMsd('sb-msd-couleur')">
+            <span class="msd-btn-label">Couleurs</span><span class="msd-arrow">▾</span>
+          </button>
+          <div class="msd-panel"></div>
         </div>
       </div>
       <div class="fg"><label class="fl">Grammage <span style="font-weight:400;font-size:11px;color:var(--gray)">(g/m²)</span></label>
@@ -1288,13 +1286,11 @@ async function init(){
   updateFilterVisibility();
   // Hardcoded filter options — no DB query needed for these
   const typeVals=Object.keys(TYPE_MAP).sort((a,b)=>a.localeCompare(b));
+  const couleurVals=['Blanc','Brun','Ivoire','Gris','Noir','Vert','Rouge','Bleu','Jaune','Orange','Argent','Couleur','Divers'];
   buildMsdOptions('msd-type',typeVals,'Tous');
-  const sbList=document.getElementById('sb-type-list');
-  if(sbList)sbList.innerHTML=typeVals.map(v=>`<div class="msd-option" data-val="${v}" onclick="toggleMsdOption(this,'msd-type')"><div class="msd-check"><svg width="9" height="7" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="1,4 3.5,6.5 8,1"/></svg></div>${v}</div>`).join('');
-
-  buildMsdOptions('msd-couleur',
-    ['Blanc','Brun','Ivoire','Gris','Noir','Vert','Rouge','Bleu','Jaune','Orange','Argent','Couleur','Divers'],
-    'Couleurs');
+  buildMsdOptions('sb-msd-type',typeVals,'Type',undefined,'msd-type');
+  buildMsdOptions('msd-couleur',couleurVals,'Couleurs');
+  buildMsdOptions('sb-msd-couleur',couleurVals,'Couleurs',undefined,'msd-couleur');
 
   buildMsdOptions('msd-mandrin',['70','76','150','152'],'Mandrins',v=>v+' mm');
 
@@ -1370,26 +1366,26 @@ function toggleMsdOption(el, id) {
 
 function updateMsdBtn(id) {
   const set = msdState[id];
-  // Support both .msd-btn (sidebar) and .fb-msd-btn (filter bar)
-  const btn = document.querySelector(`#${id} .msd-btn`) || document.querySelector(`#${id} .fb-msd-btn`);
-  if(!btn) return;
-  const label = btn.querySelector('.msd-btn-label') || btn.querySelector('span:first-child');
-  if(!label) return;
-  // Remove old count badge
-  const old = btn.querySelector('.msd-count');
-  if (old) old.remove();
-  if (set.size === 0) {
-    label.textContent = msdLabels[id];
-  } else if (set.size === 1) {
-    label.textContent = [...set][0];
-  } else {
-    label.textContent = [...set].slice(0,2).join(', ') + (set.size > 2 ? '…' : '');
-    const badge = document.createElement('span');
-    badge.className = 'msd-count';
-    badge.textContent = set.size;
-    const arrow = btn.querySelector('.msd-arrow') || btn.querySelector('.fb-msd-arrow');
-    if(arrow) btn.insertBefore(badge, arrow);
-  }
+  const btns = [
+    ...document.querySelectorAll(`#${id} .msd-btn, #${id} .fb-msd-btn`),
+    ...document.querySelectorAll(`[data-msd-id="${id}"]`)
+  ];
+  btns.forEach(btn => {
+    const label = btn.querySelector('.msd-btn-label') || btn.querySelector('span:first-child');
+    if(!label) return;
+    const old = btn.querySelector('.msd-count'); if(old) old.remove();
+    if(set.size === 0){
+      label.textContent = msdLabels[id];
+    } else if(set.size <= 2){
+      label.textContent = [...set].join(' · ');
+    } else {
+      label.textContent = [...set].slice(0,2).join(' · ');
+      const badge = document.createElement('span');
+      badge.className = 'msd-count'; badge.textContent = '+' + (set.size - 2);
+      const arrow = btn.querySelector('.msd-arrow,.fb-msd-arrow');
+      if(arrow) btn.insertBefore(badge, arrow);
+    }
+  });
 }
 
 function toggleOriginePill(btn){
@@ -1406,8 +1402,8 @@ function getMsdValues(id) { return msdState[id]; }
 function resetMsd(id) {
   msdState[id].clear();
   document.querySelectorAll(`#${id} .msd-option`).forEach(o => o.classList.remove('selected'));
-  if(id==='msd-type')document.querySelectorAll('#sb-type-list .msd-option').forEach(o=>o.classList.remove('selected'));
-  if(id==='msd-couleur')document.querySelectorAll('#sb-couleur-list .msd-option').forEach(o=>o.classList.remove('selected'));
+  if(id==='msd-type')document.querySelectorAll('#sb-msd-type .msd-option').forEach(o=>o.classList.remove('selected'));
+  if(id==='msd-couleur')document.querySelectorAll('#sb-msd-couleur .msd-option').forEach(o=>o.classList.remove('selected'));
   updateMsdBtn(id);
 }
 
