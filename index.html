@@ -198,6 +198,37 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 .btn-add-cart .cart-check{display:none;}
 .btn-add-cart.added .cart-check{display:inline-block;animation:checkpop .3s cubic-bezier(.34,1.56,.64,1);}
 .btn-add-cart.added .cart-icon{display:none;}
+/* Card action row */
+.pcard-actions{display:flex;gap:6px;margin-top:9px;}
+.pcard-actions .btn-add-cart{margin-top:0;flex:1;}
+.btn-wa-card{padding:9px 10px;background:var(--off);color:#25D366;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.btn-wa-card:hover{background:#25D366;color:#fff;border-color:#25D366;}
+.btn-cmp-card{padding:9px 10px;background:var(--off);color:var(--ink2);border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;}
+.btn-cmp-card:hover,.btn-cmp-card.cmp-active{background:var(--red);color:#fff;border-color:var(--red);}
+/* Floating compare bar */
+.cmp-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;border-radius:40px;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:600;box-shadow:var(--shadow-lg);transition:opacity .2s,transform .2s;opacity:0;pointer-events:none;white-space:nowrap;}
+.cmp-bar.show{opacity:1;pointer-events:all;}
+.cmp-bar-items{display:flex;gap:6px;}
+.cmp-thumb{width:32px;height:32px;border-radius:4px;object-fit:cover;background:var(--off2);}
+.cmp-thumb-empty{width:32px;height:32px;border-radius:4px;border:1.5px dashed #555;display:flex;align-items:center;justify-content:center;color:#555;font-size:18px;}
+.btn-cmp-go{background:var(--red);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-cmp-go:hover{background:var(--red2);}
+.btn-cmp-clear{background:transparent;color:#aaa;border:none;cursor:pointer;font-size:18px;line-height:1;padding:0 4px;}
+.btn-cmp-clear:hover{color:#fff;}
+/* Compare modal */
+.cmp-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:700;display:none;align-items:center;justify-content:center;padding:16px;}
+.cmp-modal-bg.show{display:flex;}
+.cmp-modal{background:#fff;border-radius:var(--rl);max-width:960px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);}
+.cmp-modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);}
+.cmp-modal-head h2{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.5px;}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.cmp-table th{padding:10px 14px;background:var(--off);font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);font-weight:600;border-bottom:1px solid var(--border);text-align:left;}
+.cmp-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table .cmp-label{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.4px;font-weight:600;background:var(--off);white-space:nowrap;}
+.cmp-diff{color:var(--red);font-weight:600;}
+.cmp-img-cell{text-align:center;padding:12px 14px;}
+.cmp-img-cell img{max-height:100px;max-width:120px;object-fit:cover;border-radius:4px;}
 @keyframes checkpop{0%{transform:scale(0)}100%{transform:scale(1)}}
 
 /* ── SKELETON ── */
@@ -862,7 +893,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
       <div class="d-actions">
         <button class="btn-cart-det" onclick="addToCart(cur?.id);this.innerHTML='✓ Ajouté au panier';this.style.background='#059669';setTimeout(()=>{this.innerHTML='🛒 Ajouter au panier';this.style.background='';},2000)">🛒 Ajouter au panier</button>
-        <button class="btn-pf" onclick="openProforma()">DEMANDER UNE PROFORMA</button>
+        <button class="btn-pf" onclick="openProforma()">DEMANDER UN DEVIS</button>
         <button class="btn-wa2" onclick="contactWA()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
           WhatsApp
@@ -903,7 +934,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       </div>
     </div>
     <div class="no-price-note">🔒 Prix sur demande — aucun tarif affiché</div>
-    <button class="btn-pf-drawer" onclick="openCartProforma()">📄 DEMANDER UNE PROFORMA</button>
+    <button class="btn-pf-drawer" onclick="openCartProforma()">📄 DEMANDER UN DEVIS</button>
     <div class="pf-microcopy">Réponse sous 24h ouvrées &bull; Origine UE &bull; Documents disponibles</div>
     <button class="btn-clear-drawer" onclick="confirmClearCart()">Vider le panier</button>
   </div>
@@ -913,7 +944,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 <div class="pf-bg" id="proforma-bg" onclick="if(event.target===this)closeProforma()">
   <div class="pf-box">
     <div class="pf-stripe"></div>
-    <div class="pf-title">DEMANDE PROFORMA</div>
+    <div class="pf-title">DEMANDE DE DEVIS</div>
     <div class="pf-sub" id="pf-prod-name">—</div>
     <div class="grid2">
       <div class="form-fg" id="fg-pf-nom"><label class="form-fl">Nom *</label><input class="form-fi" id="pf-nom" placeholder="Jean Dupont"><span class="form-err">Nom requis</span></div>
@@ -932,11 +963,11 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
   </div>
 </div>
 
-<!-- PROFORMA PANIER -->
+<!-- DEVIS PANIER -->
 <div class="pf-bg" id="proforma-cart-bg" onclick="if(event.target===this)closeCartProforma()">
   <div class="pf-box">
     <div class="pf-stripe"></div>
-    <div class="pf-title">PROFORMA PANIER</div>
+    <div class="pf-title">DEVIS PANIER</div>
     <div class="pf-sub">Demande groupée — <span id="pf-cart-count">—</span> produit(s)</div>
     <div class="pf-items-list" id="pf-cart-items"></div>
     <div class="grid2">
@@ -986,7 +1017,7 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
       <div class="footer-col">
         <div class="footer-col-title">Documents</div>
         <span>EUR1, COO sur demande</span>
-        <span>Proforma sous 24h ouvrées</span>
+        <span>Devis sous 24h ouvrées</span>
         <span>Livraison Europe 24–48h</span>
       </div>
     </div>
@@ -1127,6 +1158,26 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
 
 <div class="toast" id="toast"></div>
 <div id="search-suggest" class="search-suggest"></div>
+
+<!-- FLOATING COMPARE BAR -->
+<div class="cmp-bar" id="cmp-bar">
+  <div class="cmp-bar-items" id="cmp-bar-items"></div>
+  <button class="btn-cmp-go" onclick="openCmpModal()">Comparer <span id="cmp-bar-count">0</span> produits →</button>
+  <button class="btn-cmp-clear" onclick="clearCompare()" title="Vider">✕</button>
+</div>
+
+<!-- COMPARE MODAL -->
+<div class="cmp-modal-bg" id="cmp-modal-bg" onclick="if(event.target===this)closeCmpModal()">
+  <div class="cmp-modal">
+    <div class="cmp-modal-head">
+      <h2>Comparaison produits</h2>
+      <button class="btn-cancel" onclick="closeCmpModal()">✕ Fermer</button>
+    </div>
+    <div style="overflow-x:auto;padding:0 4px 16px;">
+      <table class="cmp-table" id="cmp-table"></table>
+    </div>
+  </div>
+</div>
 <div class="spin-bg" id="spinner"><div class="spin"></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1237,7 +1288,9 @@ function rowToUi(r){
   const image_url = r.image_url || '';
 
   // UI expects: name,type,grammage,largeur,poids_net,couleur,qualite,product_photos
-  const name = details || [quality, color].filter(Boolean).join(' — ') || (ref && !ref.startsWith('Photo_') ? ref : 'Produit');
+  const _detMain=details?details.split('·')[0].replace(/\s*-\s*-\s*$/,'').trim():'';
+  const _typeLabel=Object.entries(TYPE_MAP).find(([,v])=>v.includes(quality))?.[0]||'';
+  const name=_detMain||[_typeLabel,simplCouleur(color)].filter(Boolean).join(' — ')||(ref&&!ref.startsWith('Photo_')?ref:'Produit');
   const type = quality || 'Produit';
 
   return {
@@ -1259,6 +1312,90 @@ function rowToUi(r){
     image_url
   };
 }
+
+// ===== COMPARE =====
+const cmpSet = new Set();
+function toggleCompare(id){
+  id = +id;
+  const btn = document.getElementById('cmp-'+id);
+  if(cmpSet.has(id)){
+    cmpSet.delete(id);
+    if(btn){btn.textContent='⊕';btn.classList.remove('cmp-active');}
+  } else {
+    if(cmpSet.size>=3){toast('Maximum 3 produits à comparer');return;}
+    cmpSet.add(id);
+    if(btn){btn.textContent='✓';btn.classList.add('cmp-active');}
+  }
+  updateCmpBar();
+}
+function updateCmpBar(){
+  const bar=document.getElementById('cmp-bar');
+  const items=document.getElementById('cmp-bar-items');
+  const cnt=document.getElementById('cmp-bar-count');
+  if(!bar)return;
+  cnt.textContent=cmpSet.size;
+  bar.classList.toggle('show',cmpSet.size>=2);
+  const slots=Array.from({length:3},(_,i)=>{
+    const id=[...cmpSet][i];
+    if(!id)return`<div class="cmp-thumb-empty">+</div>`;
+    const p=all.find(x=>x.id==id);
+    return p&&p.image_url?`<img class="cmp-thumb" src="${p.image_url}" title="${p.name}">`:`<div class="cmp-thumb-empty" style="color:#aaa;font-size:10px">${p?.name?.substring(0,6)||'?'}</div>`;
+  });
+  items.innerHTML=slots.join('');
+}
+function clearCompare(){
+  cmpSet.clear();
+  document.querySelectorAll('.btn-cmp-card.cmp-active').forEach(b=>{b.textContent='⊕';b.classList.remove('cmp-active');});
+  updateCmpBar();
+}
+function openCmpModal(){
+  const products=[...cmpSet].map(id=>all.find(x=>x.id==id)).filter(Boolean);
+  if(products.length<2){toast('Sélectionnez au moins 2 produits');return;}
+  const specs=[
+    {lbl:'Image',key:'img'},
+    {lbl:'Référence',key:'ref'},
+    {lbl:'Type',key:'_type'},
+    {lbl:'Couleur',key:'couleur'},
+    {lbl:'Grammage',key:'grammage',unit:'g/m²'},
+    {lbl:'Laize',key:'largeur',unit:'mm'},
+    {lbl:'Longueur',key:'longueur',unit:'mm'},
+    {lbl:'Mandrin',key:'noyau',unit:'mm'},
+    {lbl:'Format',key:'_format'},
+    {lbl:'Poids',key:'poids_net',unit:'kg'},
+    {lbl:'Prix',key:'price',unit:'€/T'},
+  ];
+  // header
+  let html=`<thead><tr><th>Spec</th>${products.map(p=>`<th><div style="font-size:13px;font-weight:700;color:var(--ink)">${p.name}</div><div style="font-size:11px;color:var(--gray);margin-top:2px">${p.ref&&!p.ref.startsWith('Photo_')?p.ref:''}</div></th>`).join('')}</tr></thead><tbody>`;
+  specs.forEach(({lbl,key,unit})=>{
+    const vals=products.map(p=>{
+      if(key==='img')return p.image_url?`<img src="${p.image_url}" style="max-height:80px;max-width:100px;object-fit:cover;border-radius:4px">`:'—';
+      if(key==='_type')return Object.entries(TYPE_MAP).find(([,v])=>v.includes(p.quality))?.[0]||p.quality||'—';
+      if(key==='_format')return formatLabel(p)||p.format||'—';
+      if(key==='ref')return(p.ref&&!p.ref.startsWith('Photo_'))?p.ref:'—';
+      const v=p[key];
+      if(v===null||v===undefined||v==='')return'—';
+      return unit?v+' '+unit:v;
+    });
+    // highlight differences
+    const unique=new Set(vals.filter(v=>v!=='—'));
+    const diff=unique.size>1;
+    html+=`<tr><td class="cmp-label">${lbl}</td>${vals.map(v=>`<td class="${diff&&v!=='—'?'cmp-diff':''}">${v}</td>`).join('')}</tr>`;
+  });
+  // CTA row
+  html+=`<tr><td class="cmp-label">Action</td>${products.map(p=>`<td><button class="btn-add-cart" style="width:auto;padding:7px 14px" onclick="addToCart(${p.id})">🛒 Ajouter</button></td>`).join('')}</tr>`;
+  html+='</tbody>';
+  document.getElementById('cmp-table').innerHTML=html;
+  document.getElementById('cmp-modal-bg').classList.add('show');
+}
+function closeCmpModal(){document.getElementById('cmp-modal-bg').classList.remove('show');}
+
+function cardWa(id){
+  const p=all.find(x=>x.id==id);
+  if(!p)return;
+  const msg=`Bonjour, je suis intéressé par : ${p.name}${p.grammage?' '+p.grammage+'g/m²':''}${p.largeur?' '+p.largeur+'mm':''}${p.couleur?' '+p.couleur:''} — ${fmt(p.poids_net)} disponibles. Quel est votre prix ?`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+// ====================
 
 function goHome(){
   window.open(location.pathname,'_self');
@@ -1939,7 +2076,11 @@ function renderCards(list){
         <div class="pcard-ref">${p.ref||'—'}</div>
         <div class="pcard-name">${p.name||p.type||'—'}</div>
         <div class="tags">${tags}</div>
-        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+        <div class="pcard-actions">
+          <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+          <button class="btn-wa-card" onclick="event.stopPropagation();cardWa(${p.id})" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.117 1.522 5.847L.057 23.882l6.191-1.624A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 01-5.031-1.376l-.361-.214-3.735.979 1.001-3.648-.235-.374A9.86 9.86 0 012.108 12C2.108 6.58 6.58 2.108 12 2.108c5.421 0 9.893 4.472 9.893 9.892 0 5.421-4.472 9.894-9.893 9.894z"/></svg></button>
+          <button class="btn-cmp-card" id="cmp-${p.id}" onclick="event.stopPropagation();toggleCompare(${p.id})" title="Comparer">⊕</button>
+        </div>
         <div class="pcard-foot">
           <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
           ${prixHtml}
@@ -2002,7 +2143,11 @@ function _render_legacy(list){
           ${formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:''}
           ${p.couleur?`<span class="tag">${p.couleur}</span>`:''}
         </div>
-        <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> <span class="cart-txt">Ajouter au panier</span></button>
+        <div class="pcard-actions">
+          <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+          <button class="btn-wa-card" onclick="event.stopPropagation();cardWa('${p.id}')" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.117 1.522 5.847L.057 23.882l6.191-1.624A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 01-5.031-1.376l-.361-.214-3.735.979 1.001-3.648-.235-.374A9.86 9.86 0 012.108 12C2.108 6.58 6.58 2.108 12 2.108c5.421 0 9.893 4.472 9.893 9.892 0 5.421-4.472 9.894-9.893 9.894z"/></svg></button>
+          <button class="btn-cmp-card" id="cmp-${p.id}" onclick="event.stopPropagation();toggleCompare('${p.id}')" title="Comparer">⊕</button>
+        </div>
         <div class="pcard-foot">
           <div><div class="pton">${fmt(p.poids_net)}</div></div>
           ${p.price?`<div class="pcard-price">${p.price} €/T</div>`:'<div class="pcard-price-ask">Prix sur demande</div>'}
