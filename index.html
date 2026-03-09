@@ -836,7 +836,10 @@ footer{background:var(--black);border-top:3px solid var(--red);padding:24px;}
         </div>
       </div>
       <div class="fg" id="sb-sec-longueur"><label class="fl">Longueur <span style="font-weight:400;font-size:11px;color:var(--gray)">(mm)</span></label>
-        <div class="fi-unit-wrap"><input type="number" class="fi" id="f-longueur" placeholder="ex: 700" oninput="filterProducts()" style="width:100%"><span class="fi-unit">mm</span></div>
+        <div class="frow">
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-longmin-sb" placeholder="Min" oninput="syncSbFilter('f-longmin',this.value)"><span class="fi-unit">mm</span></div>
+          <div class="fi-unit-wrap"><input type="number" class="fi" id="f-longmax-sb" placeholder="Max" oninput="syncSbFilter('f-longmax',this.value)"><span class="fi-unit">mm</span></div>
+        </div>
       </div>
       <div class="fg"><label class="fl">Prix <span style="font-weight:400;font-size:11px;color:var(--gray)">(€/T)</span></label>
         <div class="frow">
@@ -1738,7 +1741,7 @@ async function _fetchAndRender(token){
   const lmax=+document.getElementById('f-lmax').value||0;
   const longmin=+document.getElementById('f-longmin')?.value||0;
   const longmax=+document.getElementById('f-longmax')?.value||0;
-  const longexact=+document.getElementById('f-longueur')?.value||0;
+  const longexact=0;
   const refCode=(document.getElementById('f-ref-code')?.value||'').trim().toUpperCase();
   const mandrins=getMsdValues('msd-mandrin');
   const couleurs=getMsdValues('msd-couleur');
@@ -2261,7 +2264,7 @@ function resetFilters(){
   document.querySelectorAll('.fpill-orig.active').forEach(b=>b.classList.remove('active'));
   ['fb-bobine','fb-palette','fb-recyc','fb-fab'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
   ['f-pmin','f-pmax','f-lmin','f-lmax'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  ['f-gmin','f-gmax','f-lmin-sb','f-lmax-sb','f-longmin','f-longmax','f-longueur','f-ref-code'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-gmin','f-gmax','f-lmin-sb','f-lmax-sb','f-longmin-sb','f-longmax-sb','f-longmin','f-longmax','f-ref-code'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   ['f-gmin-sb','f-gmax-sb','f-pmin-sb','f-pmax-sb'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   ['search-input','search-input-mob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   // Reset mobile drawer inputs too
