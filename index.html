@@ -201,7 +201,8 @@ header{background:rgba(255,255,255,.92);position:sticky;top:0;z-index:100;border
 /* Card action row */
 .pcard-actions{display:flex;gap:6px;margin-top:auto;}
 .pcard-actions .btn-add-cart{margin-top:0;flex:1;width:auto;min-width:0;}
-.pcard-body>.btn-add-cart{margin-top:auto;}
+.pcard-body>.btn-add-cart{margin-top:0;}
+.pcard-bottom{margin-top:auto;}
 .btn-wa-card{padding:9px 10px;background:var(--off);color:#25D366;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .btn-wa-card:hover{background:#25D366;color:#fff;border-color:#25D366;}
 .btn-cmp-card{padding:9px 10px;background:var(--off);color:var(--ink2);border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:600;}
@@ -2089,10 +2090,12 @@ function renderCards(list){
         <div class="pcard-ref">${p.ref||'—'}</div>
         <div class="pcard-name">${p.name||p.type||'—'}</div>
         <div class="tags">${tags}</div>
-        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
-        <div class="pcard-foot">
-          <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
-          ${prixHtml}
+        <div class="pcard-bottom">
+          <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
+          <div class="pcard-foot">
+            <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
+            ${prixHtml}
+          </div>
         </div>
       </div>
     </div>`;
@@ -2152,10 +2155,12 @@ function _render_legacy(list){
           ${formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:''}
           ${p.couleur?`<span class="tag">${p.couleur}</span>`:''}
         </div>
-        <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
-        <div class="pcard-foot">
-          <div><div class="pton">${fmt(p.poids_net)}</div></div>
-          ${p.price?`<div class="pcard-price">${p.price} €/T</div>`:'<div class="pcard-price-ask">Prix Départ usine</div>'}
+        <div class="pcard-bottom">
+          <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
+          <div class="pcard-foot">
+            <div><div class="pton">${fmt(p.poids_net)}</div></div>
+            ${p.price?`<div class="pcard-price">${p.price} €/T</div>`:'<div class="pcard-price-ask">Prix Départ usine</div>'}
+          </div>
         </div>
       </div>
     </div>`;
