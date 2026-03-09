@@ -1394,7 +1394,7 @@ function openCmpModal(){
     html+=`<tr><td class="cmp-label">${lbl}</td>${vals.map(v=>`<td class="${diff&&v!=='—'?'cmp-diff':''}">${v}</td>`).join('')}</tr>`;
   });
   // CTA row
-  html+=`<tr><td class="cmp-label">Action</td>${products.map(p=>`<td><button class="btn-add-cart" style="width:auto;padding:7px 14px" onclick="addToCart(${p.id})">🛒 Ajouter</button></td>`).join('')}</tr>`;
+  html+=`<tr><td class="cmp-label">Action</td>${products.map(p=>`<td><button class="btn-add-cart" style="width:auto;padding:7px 14px" onclick="addToCart(${p.id})">+ Ajouter</button></td>`).join('')}</tr>`;
   html+='</tbody>';
   document.getElementById('cmp-table').innerHTML=html;
   document.getElementById('cmp-modal-bg').classList.add('show');
@@ -2088,7 +2088,7 @@ function renderCards(list){
         <div class="pcard-ref">${p.ref||'—'}</div>
         <div class="pcard-name">${p.name||p.type||'—'}</div>
         <div class="tags">${tags}</div>
-        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+        <button class="btn-add-cart" id="cadd-${p.id}" onclick="event.stopPropagation();addToCart(${p.id})"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
         <div class="pcard-foot">
           <div><div class="pton">${poids}<span class="pton-s"> T</span></div></div>
           ${prixHtml}
@@ -2151,7 +2151,7 @@ function _render_legacy(list){
           ${formatLabel(p)?`<span class="tag">${formatLabel(p)}</span>`:''}
           ${p.couleur?`<span class="tag">${p.couleur}</span>`:''}
         </div>
-        <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">🛒</span><span class="cart-check">✓</span> Ajouter</button>
+        <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.id}')"><span class="cart-icon">+</span><span class="cart-check">✓</span> Ajouter</button>
         <div class="pcard-foot">
           <div><div class="pton">${fmt(p.poids_net)}</div></div>
           ${p.price?`<div class="pcard-price">${p.price} €/T</div>`:'<div class="pcard-price-ask">Prix Départ usine</div>'}
