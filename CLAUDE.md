@@ -22,7 +22,7 @@ Site statique de catalogue papier/carton B2B. Déployé sur GitHub Pages.
 - **Project ref** : `bvcgpdoukhcatjibmvnb`
 - **URL** : `https://bvcgpdoukhcatjibmvnb.supabase.co`
 - **Anon key** : `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2Y2dwZG91a2hjYXRqaWJtdm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzg5MjgsImV4cCI6MjA4Nzg1NDkyOH0.Ip3ykSUS9sajTH04yXBerOG1haBKMD1kAvMQNjnGL1Q`
-- **Management token** : `sbp_9c9c6c322ac7547be80c3392d803d8609161ca69`
+- **Management token** : `sbp_d044e6944ea31b7e10183a7eb9b96b0d281696d3`
 - **SQL endpoint** : `POST https://api.supabase.com/v1/projects/bvcgpdoukhcatjibmvnb/database/query`
 
 ### Tables principales
@@ -60,6 +60,14 @@ Site statique de catalogue papier/carton B2B. Déployé sur GitHub Pages.
 - Les données price restent dans les objets JS, juste pas rendues
 - Tri stable : toujours `,id.asc` comme clé secondaire
 - `_viewMode` (`'grid'` | `'list'`) persiste entre les changements de page
+
+## Règles photos / images produit
+- Les produits **FAB** (ref contient "FAB", emplacement contient "FABRICATION", zone = "FABRICATION SUR COMMANDE") doivent **toujours** afficher `img/fabrication-sur-demande.png`, même s'ils ont une `image_url` en base
+- La détection FAB ne doit **jamais** dépendre de `!p.image_url` — on teste uniquement ref/emplacement/zone
+- Les produits non-FAB sans `image_url` affichent `img/no-photo.png` (placeholder "Photos sur demande")
+- Les `image_url` viennent des **hyperlinks** dans les fichiers Excel (pattern : `https://stock.prodi.net/albums/photo/{ref}.jpg`)
+- Quand on importe des produits depuis les Excel, **toujours extraire les hyperlinks** de la colonne A pour remplir `image_url`
+- `onerror` sur les images renvoie vers `img/no-photo.png` en cas de lien cassé
 
 ## Déploiement
 - Push sur `main` → GitHub Actions → GitHub Pages (automatique, ~30s)
