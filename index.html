@@ -759,5 +759,32 @@
 <div class="spin-bg" id="spinner"><div class="spin"></div></div>
 
 <script src="catalogue.js?v=333"></script>
+
+<!-- ══ POPUP : renvoi vers le nouveau catalogue paper.prodi.com (ancien site figé) ══ -->
+<div id="mv-pop" role="dialog" aria-modal="true" aria-label="Nouveau catalogue en ligne">
+  <div class="mv-overlay" onclick="document.getElementById('mv-pop').style.display='none'"></div>
+  <div class="mv-card">
+    <button class="mv-x" aria-label="Fermer" onclick="document.getElementById('mv-pop').style.display='none'">&times;</button>
+    <img class="mv-logo" src="img/logo.png" alt="Prodiconseil" onerror="this.style.display='none'">
+    <h2 class="mv-h">Notre catalogue a déménagé</h2>
+    <p class="mv-p">Retrouvez l'intégralité de notre stock papier &amp; carton, mis à jour chaque jour, sur notre nouveau site.</p>
+    <a class="mv-btn" href="https://paper.prodi.com/catalogue/">Accéder au nouveau catalogue →</a>
+    <button class="mv-stay" onclick="document.getElementById('mv-pop').style.display='none'">Rester sur l'ancienne version</button>
+  </div>
+</div>
+<style>
+#mv-pop{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'DM Sans',-apple-system,system-ui,sans-serif;}
+#mv-pop .mv-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+#mv-pop .mv-card{position:relative;background:#fff;border-radius:22px;max-width:400px;width:100%;padding:38px 32px 30px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.35);animation:mvIn .28s ease-out;}
+@keyframes mvIn{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:none;}}
+#mv-pop .mv-x{position:absolute;top:12px;right:15px;border:0;background:none;font-size:26px;line-height:1;color:#aaa;cursor:pointer;padding:4px;}
+#mv-pop .mv-x:hover{color:#111;}
+#mv-pop .mv-logo{width:150px;height:auto;margin:0 auto 20px;display:block;}
+#mv-pop .mv-h{font-family:'Bebas Neue','DM Sans',sans-serif;font-size:30px;letter-spacing:.5px;color:#111;margin:0 0 10px;}
+#mv-pop .mv-p{font-size:15px;line-height:1.55;color:#555;margin:0 0 24px;}
+#mv-pop .mv-btn{display:block;background:#FE0000;color:#fff;font-weight:700;font-size:16px;text-decoration:none;padding:15px 20px;border-radius:999px;transition:background .15s;}
+#mv-pop .mv-btn:hover{background:#cc0000;}
+#mv-pop .mv-stay{display:block;margin:14px auto 0;border:0;background:none;color:#9a9a9a;font-size:13px;cursor:pointer;text-decoration:underline;}
+</style>
 </body>
 </html>
